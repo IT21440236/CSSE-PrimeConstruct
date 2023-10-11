@@ -2,7 +2,6 @@ import { Routes as Switch, Route, Routes } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/Layout";
 
-// import { ToastContextProvider } from "./context/ToastContext";
 import { AuthContextProvider } from "./context/AuthContext";
 
 import Home from "./pages/Home";
@@ -16,29 +15,8 @@ import CreateSalary from "./pages/AddSalary";
 import CreateAttendance from "./pages/AddAttendance";
 import Report from "./pages/CreateReport";
 import Index from "./pages";
-import EMDashboard from "./pages/EMDashboard";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-
-// Bhanuka********************************************************
-import { AllVehicle } from "./pages/AllVehicle";
-import { AddVehicle } from "./pages/AddVehicle";
-import { EditVehicle } from "./pages/EditVehicle";
-import { VehicleDetail } from "./pages/VehicleDetail";
-import { DriverVehicleAssign } from "./pages/DriverVehicleAssign";
-import { AddFuel } from "./pages/AddFuel";
-import { RepairAssign } from "./pages/RepairAssign";
-import { VMDashboard } from "./pages/VMDashboard";
-import { AllVehicleDocument } from "./pages/AllVehicleDocument";
-import { Editdocument } from "./pages/Editdocument";
-import { AddRunnigRecords } from "./pages/AddRunnigRecords";
-import { AddRepair } from "./pages/AddRepair";
-import { RegisterGarage } from "./pages/RegisterGarage";
-
-import { ViewRunningRecords } from "./pages/ViewRunningRecords";
-import { ViewFuelDetails } from "./pages/ViewFuelDetails";
-
-// Bhanuka********************************************************
 
 // Pasindu********************************************************
 import AllSalesReps from "./pages/AllSalesReps";
@@ -85,45 +63,6 @@ const App = () => {
                 <Route path="/addsalary" element={<CreateSalary />} />
                 <Route path="/addattendance" element={<CreateAttendance />} />
                 <Route path="/createreport" element={<Report />} />
-
-                {/* Bhanuka******************************************************** */}
-
-                <Route path="/vmdashboard" exact element={<VMDashboard />} />
-                <Route path="/allvehicle" exact element={<AllVehicle />} />
-                <Route path="/registerVehicle" element={<AddVehicle />} />
-                <Route
-                  path="/allvehicle/editVehicle/:id"
-                  element={<EditVehicle />}
-                />
-                <Route
-                  path="/allvehicle/viewVehicle/:id"
-                  element={<VehicleDetail />}
-                />
-                <Route
-                  path="/drivervehicleAssign"
-                  element={<DriverVehicleAssign />}
-                />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/addFuel" element={<AddFuel />} />
-                <Route path="/repairAssign" element={<RepairAssign />} />
-                <Route path="/allDocument" element={<AllVehicleDocument />} />
-                <Route
-                  path="/allDocument/editdoc/:id"
-                  element={<Editdocument />}
-                />
-                <Route
-                  path="/addRunningRecords"
-                  element={<AddRunnigRecords />}
-                />
-                <Route path="/addrepair" element={<AddRepair />} />
-                <Route path="/registerGarage" element={<RegisterGarage />} />
-                <Route
-                  path="/viewRunningRecords"
-                  element={<ViewRunningRecords />}
-                />
-                <Route path="/viewFuelRecords" element={<ViewFuelDetails />} />
-                {/* Bhanuka******************************************************** */}
 
                 {/* Pasindu******************************************************** */}
                 <Route path="/allsalesreps" element={<AllSalesReps />} />

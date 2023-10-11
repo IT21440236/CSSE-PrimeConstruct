@@ -7,7 +7,6 @@ import reportWebVitals from "./reportWebVitals";
 // ashen
 import { HelmetProvider } from "react-helmet-async";
 import { StoreProvider } from "./Store";
-import { BrowserRouter } from "react-router-dom";
 
 // ashen
 

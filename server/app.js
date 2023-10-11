@@ -33,29 +33,6 @@ app.use("/api/", require("./routes/attendance"));
 //     return res.status(200).json({ ...req.user._doc });
 // });
 
-//Bhanuka***************************************************************************
-
-app.use("/api/", require("./routes/vehicle"));
-app.use("/api/", require("./routes/fuel"));
-app.use("/api/", require("./routes/runningrecord"));
-app.use("/api/", require("./routes/garage"));
-app.use("/api/", require("./routes/vehicledocument"));
-app.use("/api/", require("./routes/driver-vehicle-assign"));
-app.use("/api/", require("./routes/repairassign"));
-app.use("/api/", require("./routes/repair"));
-
-app.use("/api/", require("./routes/vehicle"));
-app.use("/api/", require("./routes/fuel"));
-app.use("/api/", require("./routes/runningrecord"));
-app.use("/api/", require("./routes/garage"));
-app.use("/api/", require("./routes/vehicledocument"));
-app.use("/api/", require("./routes/driver-vehicle-assign"));
-app.use("/api/", require("./routes/repairassign"));
-app.use("/api/", require("./routes/repair"));
-app.use("/vehicleuploads", express.static("./vehicleuploads"));
-
-//Bhanuka***************************************************************************
-
 //Pasindu***************************************************************************
 const cors = require("cors");
 app.use(cors());
