@@ -63,7 +63,7 @@ router.get("/deliveryreport", async (req, res) => {
       .text("Southern Agro Serve (Pvt) Ltd", { align: "center" })
       .moveDown(2);
 
-    // Add current date and time and Delivery manager's name
+    // Add current date and time and Supplier's name
     const currentDate = new Date().toLocaleDateString();
     const currentTime = new Date().toLocaleTimeString();
     const DManagerName = "Pasindu Jayasinghe";
@@ -76,7 +76,7 @@ router.get("/deliveryreport", async (req, res) => {
         { align: "left" }
       )
       .text(`Printed on: ${currentDate} ${currentTime}`, { align: "left" })
-      // .text(`Delivery Manager: ${DManagerName}`, { align: "left" })
+      // .text(`Supplier: ${DManagerName}`, { align: "left" })
       .moveDown(2);
 
     // doc

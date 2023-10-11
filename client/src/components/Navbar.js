@@ -102,8 +102,8 @@ const Navbar = ({ title = "Southern Agro" }) => {
         <ul className="navbar-nav">
           <p className="nav-link">{dateTime.toLocaleString()}</p>
 
-          {/* HR Manager - Yeran Kodithuwakku*/}
-          {user && user.role === "HR Manager" ? (
+          {/* Site Manager - Yeran Kodithuwakku*/}
+          {user && user.role === "Site Manager" ? (
             <>
               <li className="nav-item">
                 <Link to="/" role="button" className="nav-link">
@@ -169,7 +169,7 @@ const Navbar = ({ title = "Southern Agro" }) => {
               </li>
             </>
           ) : // Delivery  Manager - Pasindu Jayasinghe
-          user && user.role === "Delivery Manager" ? (
+          user && user.role === "Supplier" ? (
             <>
               <li className="nav-item">
                 <Link to="/allsalesreps" role="button" className="nav-link">

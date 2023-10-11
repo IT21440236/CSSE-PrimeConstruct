@@ -127,14 +127,14 @@ const Register = () => {
                 name="role"
                 value={credentials.role}
                 onChange={handleInputChange}
-                placeholder="HR Manager"
+                placeholder="Site Manager"
                 required
                 fdprocessedid="8n2of"
               >
                 <option value="">Select Role</option>
                 <option value="Administrator">Site Manager</option>
-                <option value="HR Manager">Supplier</option>
-                <option value="Delivery Manager">Staff</option>
+                <option value="Site Manager">Supplier</option>
+                <option value="Supplier">Staff</option>
               </select>
             </div>
             <input
