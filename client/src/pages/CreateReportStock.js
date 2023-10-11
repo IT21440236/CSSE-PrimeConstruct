@@ -14,7 +14,7 @@ function StockReport() {
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "Southern Agro Serve (Pvt) Ltd.pdf");
+      link.setAttribute("download", "Prime Construct (Pvt) Ltd.pdf");
       document.body.appendChild(link);
       link.click();
     } catch (err) {
@@ -24,7 +24,6 @@ function StockReport() {
   };
 
   return (
-    
     <div>
       <Helmet>
         <title>Report</title>

@@ -48,12 +48,15 @@ const AllCategory = () => {
   const deleteCategory = async (id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
       try {
-        const res = await fetch(`http://localhost:8000/api/deletecategory/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const res = await fetch(
+          `http://localhost:8000/api/deletecategory/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const result = await res.json();
         if (!result.error) {
           setCategories(result.categories);
@@ -86,10 +89,7 @@ const AllCategory = () => {
     const newSearchUser = categories.filter(
       (category) =>
         category.catid.toLowerCase().includes(searchInput.toLowerCase()) ||
-        category.name.toLowerCase().includes(searchInput.toLowerCase()) 
-        
-        
-        
+        category.name.toLowerCase().includes(searchInput.toLowerCase())
     );
     console.log(newSearchUser);
     setCategories(newSearchUser);
@@ -113,7 +113,11 @@ const AllCategory = () => {
             Reload Category List
           </a>
           <div>
-            <Link className="btn btn-info mb-2" to={"/createcategory"} role="button">
+            <Link
+              className="btn btn-info mb-2"
+              to={"/createcategory"}
+              role="button"
+            >
               Add Category
             </Link>
           </div>
@@ -208,7 +212,6 @@ const AllCategory = () => {
                         >
                           Orders In Queue
                         </th>
-                        
                       </tr>
                     </thead>
 
@@ -226,7 +229,7 @@ const AllCategory = () => {
                           <td>{category.name}</td>
                           <td>{category.quantityavailable}</td>
                           <td>{category.quantitysold}</td>
-                          <td>{category.ordersinqueue}</td> 
+                          <td>{category.ordersinqueue}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -242,7 +245,7 @@ const AllCategory = () => {
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           {/* <Modal.Title>{modalData.firstname}</Modal.Title> */}
-          <Modal.Title>Southern Agro</Modal.Title>
+          <Modal.Title>Prime Construct</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -259,7 +262,6 @@ const AllCategory = () => {
           <p>
             <strong>Orders In Queue</strong>: {modalData.ordersinqueue}
           </p>
-      
         </Modal.Body>
 
         <Modal.Footer>

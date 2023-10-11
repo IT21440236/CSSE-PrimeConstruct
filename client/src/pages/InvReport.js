@@ -47,7 +47,7 @@ const AllInvoice = () => {
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "Southern Agro Serve (Pvt) Ltd.pdf");
+      link.setAttribute("download", "Prime Construct (Pvt) Ltd.pdf");
       document.body.appendChild(link);
       link.click();
     } catch (err) {
@@ -70,7 +70,7 @@ const AllInvoice = () => {
       link.href = url;
       link.setAttribute(
         "download",
-        `Southern Agro Serve (Pvt) Ltd ${type} Report.pdf`
+        `Prime Construct (Pvt) Ltd ${type} Report.pdf`
       );
       document.body.appendChild(link);
       link.click();
@@ -86,8 +86,8 @@ const AllInvoice = () => {
         {/* <h1 className='text-center bg-darkgreen text-white p-2'>
           Report Generate
         </h1> */}
-        <div className='d-flex justify-content-between'>
-          <a href='/reportInv' className='btn btn-danger my-2'>
+        <div className="d-flex justify-content-between">
+          <a href="/reportInv" className="btn btn-danger my-2">
             Reload Invoice List
           </a>
           <div>
@@ -95,28 +95,28 @@ const AllInvoice = () => {
               Download:
             </h4>
             <button
-              className='btn btn-info mb-2'
+              className="btn btn-info mb-2"
               onClick={handleDownloadReport}
               disabled={loading}
             >
               {loading ? "Generating report..." : "All Invoice Report"}
             </button>
             <button
-              className='btn btn-info mb-2'
+              className="btn btn-info mb-2"
               onClick={() => handleDownloadReportType("daily")}
               disabled={loading}
             >
               Daily Report
             </button>
             <button
-              className='btn btn-info mb-2'
+              className="btn btn-info mb-2"
               onClick={() => handleDownloadReportType("weekly")}
               disabled={loading}
             >
               Weekly Report
             </button>
             <button
-              className='btn btn-info mb-2'
+              className="btn btn-info mb-2"
               onClick={() => handleDownloadReportType("monthly")}
               disabled={loading}
             >
@@ -124,9 +124,9 @@ const AllInvoice = () => {
             </button>
           </div>
         </div>
-        <hr className='my-4' />
+        <hr className="my-4" />
         {loading ? (
-          <Spinner splash='Loading Invoices...' />
+          <Spinner splash="Loading Invoices..." />
         ) : (
           <>
             {invoices ? (
@@ -156,7 +156,7 @@ const AllInvoice = () => {
                   <p>
                     Your Total Invoices: <strong>{invoices.length}</strong>{" "}
                   </p>
-                  <table className='table table-hover'>
+                  <table className="table table-hover">
                     <thead>
                       <tr>
                         {/* <th
@@ -166,26 +166,26 @@ const AllInvoice = () => {
                           Invoice ID
                         </th> */}
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Invoice No
                         </th>
 
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "15%", whiteSpace: "nowrap" }}
                         >
                           Date of Issued
                         </th>
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "15%", whiteSpace: "nowrap" }}
                         >
                           Customer Name
                         </th>
                         <th
-                          scope='col'
+                          scope="col"
                           style={{
                             width: "20%",
                             whiteSpace: "nowrap",
@@ -195,14 +195,14 @@ const AllInvoice = () => {
                           Mobile Number
                         </th>
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Business Name
                         </th>
 
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Payment method
@@ -226,7 +226,7 @@ const AllInvoice = () => {
                           Cheque Number
                         </th> */}
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Paid Amount
@@ -237,7 +237,7 @@ const AllInvoice = () => {
                     <tbody>
                       {invoices.map((invoice) => (
                         <tr>
-                          <th scope='row'>{invoice.invoiceNo}</th>
+                          <th scope="row">{invoice.invoiceNo}</th>
 
                           <td>{invoice.issuedDate}</td>
                           <td>{invoice.cusName}</td>

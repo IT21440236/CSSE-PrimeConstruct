@@ -35,7 +35,7 @@ router.post("/assigndriver", async (req, res) => {
       to: driverMail,
       subject: "Sending Email Driver-Vehicle Assignment",
       html:
-        "<h1>Southern Agro Serve Pvt Limited</h1> <h2>Mr " +
+        "<h1>Prime Construct Pvt Limited</h1> <h2>Mr " +
         driver +
         "</h2> <h2> You have been allocated " +
         registerNo +

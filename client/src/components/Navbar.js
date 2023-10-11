@@ -24,7 +24,7 @@ import {
   faClipboardList,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Navbar = ({ title = "Southern Agro" }) => {
+const Navbar = ({ title = "Prime Construct" }) => {
   const [currentPage, setCurrentPage] = useState("");
   const location = useLocation();
   const [showSidebar, setShowSidebar] = useState(false);

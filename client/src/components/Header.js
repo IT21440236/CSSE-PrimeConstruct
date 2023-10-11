@@ -21,7 +21,7 @@ const Header = () => {
           style={{ textDecoration: "none" }}
         >
           <h1 className="m-2 text-white" style={{ paddingLeft: "25px" }}>
-            Southern Agro
+            Prime Construct
           </h1>
         </Link>
       ) : (
@@ -31,7 +31,7 @@ const Header = () => {
           style={{ textDecoration: "none" }}
         >
           <h1 className="m-2 text-white " style={{ paddingLeft: "25px" }}>
-            Southern Agro
+            Prime Construct
           </h1>
         </Link>
       )}

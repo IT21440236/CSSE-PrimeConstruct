@@ -38,7 +38,7 @@ router.get("/stockreport", async (req, res) => {
       .fillColor("white")
       .image(logo, 10, 10, { width: 80, height: 80 })
       .fontSize(40)
-      .text("Southern Agro Serve (Pvt) Ltd", { align: "center" })
+      .text("Prime Construct (Pvt) Ltd", { align: "center" })
       .moveDown(2);
 
     // Add current date and time and Site Manager's name

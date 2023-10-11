@@ -1,28 +1,28 @@
-import React from 'react';
-import '../App.css';
+import React from "react";
+import "../App.css";
 
-import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { useEffect } from 'react';
-import AuthContext from '../context/AuthContext';
-import { Helmet } from 'react-helmet-async';
-import { Height } from '@mui/icons-material';
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useEffect } from "react";
+import AuthContext from "../context/AuthContext";
+import { Helmet } from "react-helmet-async";
+import { Height } from "@mui/icons-material";
 
 const Home = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    !user && navigate('/login', { replace: true });
+    !user && navigate("/login", { replace: true });
   }, []);
 
   const now = new Date();
   const hour = now.getHours();
-  const greeting = hour < 12 ? 'Good morning' : 'Good evening';
+  const greeting = hour < 12 ? "Good morning" : "Good evening";
 
   return (
     <>
       <Helmet>
-        <title>Southern Agro</title>
+        <title>Prime Construct</title>
       </Helmet>
       <div className="jumbotron">
         <h1 className="display-4">{greeting}!</h1>
@@ -39,9 +39,9 @@ const Home = () => {
           </Link>
         </div> */}
         <div className="row">
-          <div className="col-lg-4 col-md-6 mb-4" style={{height:"15vh"}}>
+          <div className="col-lg-4 col-md-6 mb-4" style={{ height: "15vh" }}>
             <Link
-              to={'/allsalesreps'}
+              to={"/allsalesreps"}
               className="btn btn-success btn-lg btn-block button-link button-link1 "
             >
               <span>Delivery Management</span>
@@ -65,7 +65,7 @@ const Home = () => {
           </div> */}
           <div className="col-lg-4 col-md-6 mb-4">
             <Link
-              to={'/allInv'}
+              to={"/allInv"}
               className="btn btn-success btn-lg btn-block  button-link button-link4"
             >
               <span>Invoice Entry system</span>
@@ -73,15 +73,15 @@ const Home = () => {
           </div>
           <div className="col-lg-4 col-md-6 mb-4">
             <Link
-              to={'/index'}
+              to={"/index"}
               className="btn btn-success btn-lg btn-block  button-link button-link5"
             >
               <span>Employee Management</span>
             </Link>
           </div>
-          <div className="col-lg-4 col-md-6 mb-4" style={{height:"15vh"}}>
+          <div className="col-lg-4 col-md-6 mb-4" style={{ height: "15vh" }}>
             <Link
-              to={'/mystocks'}
+              to={"/mystocks"}
               className="btn btn-success btn-lg btn-block  button-link button-link6"
             >
               <span>Inventory control management</span>
@@ -91,7 +91,7 @@ const Home = () => {
           <div className="col-lg-4 col-md-6 mb-4">
             <Link
               //to={'/index'}
-              to={'/allsup'}
+              to={"/allsup"}
               className="btn btn-success btn-lg btn-block  button-link button-link7"
             >
               <span>Supplier Management</span>
@@ -99,15 +99,18 @@ const Home = () => {
           </div>
           <div className="col-lg-4 col-md-6 mb-4">
             <Link
-              to={'/vmdashboard'}
+              to={"/vmdashboard"}
               className="btn btn-success btn-lg btn-block  button-link button-link8"
             >
               <span>Vehicle Management</span>
             </Link>
           </div>
-          <div className="col-lg-4 col-md-6 mb-4 mx-auto" style={{height:"15vh"}}>
+          <div
+            className="col-lg-4 col-md-6 mb-4 mx-auto"
+            style={{ height: "15vh" }}
+          >
             <Link
-              to={'admin/orders'}
+              to={"admin/orders"}
               className="btn btn-success btn-lg btn-block  button-link button-link2"
             >
               <span>Customer Order Management</span>

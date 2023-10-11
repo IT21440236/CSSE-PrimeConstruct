@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 const auth = require("../middlewares/auth");
 
 //assign driver to vehicle to system
-router.post("/assigndrivertorepair",auth, async (req, res) => {
+router.post("/assigndrivertorepair", auth, async (req, res) => {
   //console.log(req.body);
 
   const { registerNo, driver, driverMail, garage, vehicleIssue } = req.body;
@@ -39,7 +39,7 @@ router.post("/assigndrivertorepair",auth, async (req, res) => {
       to: driverMail,
       subject: "Sending Email for Maintenance and Repair Assignment",
       html:
-        "<h1>Southern Agro Serve Pvt Limited</h1> <h2>Mr " +
+        "<h1>Prime Construct Pvt Limited</h1> <h2>Mr " +
         driver +
         ",</h2> <h2> To repair " +
         registerNo +

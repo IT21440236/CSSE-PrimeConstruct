@@ -48,12 +48,15 @@ const AllProfit = () => {
   const deleteProfit = async (id) => {
     if (window.confirm("Are you sure you want to delete this profit?")) {
       try {
-        const res = await fetch(`http://localhost:8000/api/deleteprofit/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const res = await fetch(
+          `http://localhost:8000/api/deleteprofit/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const result = await res.json();
         if (!result.error) {
           setProfits(result.profits);
@@ -83,11 +86,8 @@ const AllProfit = () => {
     //   return;
     // }
 
-    const newSearchUser = profits.filter(
-      (profit) =>
-        profit.stockid.toLowerCase().includes(searchInput.toLowerCase()) 
-
-        
+    const newSearchUser = profits.filter((profit) =>
+      profit.stockid.toLowerCase().includes(searchInput.toLowerCase())
     );
     console.log(newSearchUser);
     setProfits(newSearchUser);
@@ -170,101 +170,100 @@ const AllProfit = () => {
                     Your Total Profits: <strong>{profits.length}</strong>{" "}
                   </p>
                   <div className="table-responsive">
-                  <table className="table table-hover">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          style={{ width: "10%", whiteSpace: "nowrap" }}
-                        >
-                          Stock ID
-                        </th>
-                        <th
-                          scope="col"
-                          style={{ width: "15%", whiteSpace: "nowrap" }}
-                        >
-                          Cost Price
-                        </th>
-                        <th
-                          scope="col"
-                          style={{ width: "15%", whiteSpace: "nowrap" }}
-                        >
-                          Selling Price
-                        </th>
-                        <th
-                          scope="col"
-                          style={{
-                            width: "20%",
-                            whiteSpace: "nowrap",
-                            textAlign: "center",
-                          }}
-                        >
-                          Quantity Sold
-                        </th>
-                        <th
-                          scope="col"
-                          style={{ width: "10%", whiteSpace: "nowrap" }}
-                        >
-                          start Date 
-                        </th>
-                        <th
-                          scope="col"
-                          style={{ width: "10%", whiteSpace: "nowrap" }}
-                        >
-                          End Date
-                        </th>
-                        {/* <th
+                    <table className="table table-hover">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            style={{ width: "10%", whiteSpace: "nowrap" }}
+                          >
+                            Stock ID
+                          </th>
+                          <th
+                            scope="col"
+                            style={{ width: "15%", whiteSpace: "nowrap" }}
+                          >
+                            Cost Price
+                          </th>
+                          <th
+                            scope="col"
+                            style={{ width: "15%", whiteSpace: "nowrap" }}
+                          >
+                            Selling Price
+                          </th>
+                          <th
+                            scope="col"
+                            style={{
+                              width: "20%",
+                              whiteSpace: "nowrap",
+                              textAlign: "center",
+                            }}
+                          >
+                            Quantity Sold
+                          </th>
+                          <th
+                            scope="col"
+                            style={{ width: "10%", whiteSpace: "nowrap" }}
+                          >
+                            start Date
+                          </th>
+                          <th
+                            scope="col"
+                            style={{ width: "10%", whiteSpace: "nowrap" }}
+                          >
+                            End Date
+                          </th>
+                          {/* <th
                           scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Time Period
                         </th> */}
-                        <th
-                          scope="col"
-                          style={{ width: "10%", whiteSpace: "nowrap" }}
-                        >
-                          Gross Profit
-                        </th>
-                        <th
-                          scope="col"
-                          style={{ width: "10%", whiteSpace: "nowrap" }}
-                        >
-                          Total Revenue
-                        </th>
-                        <th
-                          scope="col"
-                          style={{ width: "10%", whiteSpace: "nowrap" }}
-                        >
-                          Profit Margin
-                        </th>
-                        
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {profits.map((profit) => (
-                        <tr
-                          key={profit._id}
-                          onClick={() => {
-                            setModalData({}); //we need to clear the modal data before setting it again
-                            setModalData(profit);
-                            setShowModal(true);
-                          }}
-                        >
-                          <th scope="row">{profit.stockid}</th>
-                          <td>LKR {profit.costprice}</td>
-                          <td>LKR {profit.sellingprice}</td>
-                          <td>{profit.quantitysold}</td>
-                          <td>{profit.startdate}</td>
-                          <td>{profit.enddate}</td>
-                          {/* <td>{profit.timeperiod}</td>  */}
-                          <td>LKR {profit.grossprofit}</td> 
-                          <td>LKR {profit.totalrevenue}</td> 
-                          <td>LKR {profit.profitmargin}</td> 
+                          <th
+                            scope="col"
+                            style={{ width: "10%", whiteSpace: "nowrap" }}
+                          >
+                            Gross Profit
+                          </th>
+                          <th
+                            scope="col"
+                            style={{ width: "10%", whiteSpace: "nowrap" }}
+                          >
+                            Total Revenue
+                          </th>
+                          <th
+                            scope="col"
+                            style={{ width: "10%", whiteSpace: "nowrap" }}
+                          >
+                            Profit Margin
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+
+                      <tbody>
+                        {profits.map((profit) => (
+                          <tr
+                            key={profit._id}
+                            onClick={() => {
+                              setModalData({}); //we need to clear the modal data before setting it again
+                              setModalData(profit);
+                              setShowModal(true);
+                            }}
+                          >
+                            <th scope="row">{profit.stockid}</th>
+                            <td>LKR {profit.costprice}</td>
+                            <td>LKR {profit.sellingprice}</td>
+                            <td>{profit.quantitysold}</td>
+                            <td>{profit.startdate}</td>
+                            <td>{profit.enddate}</td>
+                            {/* <td>{profit.timeperiod}</td>  */}
+                            <td>LKR {profit.grossprofit}</td>
+                            <td>LKR {profit.totalrevenue}</td>
+                            <td>LKR {profit.profitmargin}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </>
               )
@@ -277,7 +276,7 @@ const AllProfit = () => {
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           {/* <Modal.Title>{modalData.firstname}</Modal.Title> */}
-          <Modal.Title>Southern Agro</Modal.Title>
+          <Modal.Title>Prime Construct</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -309,7 +308,6 @@ const AllProfit = () => {
           <p>
             <strong>Profit Margin</strong>: {modalData.profitmargin}
           </p>
-      
         </Modal.Body>
 
         <Modal.Footer>

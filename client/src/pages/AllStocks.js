@@ -102,8 +102,6 @@ const AllStock = () => {
   };
   return (
     <>
-
-    
       <Helmet>
         <title>Stocks</title>
       </Helmet>
@@ -267,7 +265,7 @@ const AllStock = () => {
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           {/* <Modal.Title>{modalData.firstname}</Modal.Title> */}
-          <Modal.Title>Southern Agro</Modal.Title>
+          <Modal.Title>Prime Construct</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

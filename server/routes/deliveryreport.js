@@ -60,7 +60,7 @@ router.get("/deliveryreport", async (req, res) => {
       .fillColor("white")
       .image(logo, 10, 10, { width: 80, height: 80 })
       .fontSize(40)
-      .text("Southern Agro Serve (Pvt) Ltd", { align: "center" })
+      .text("Prime Construct (Pvt) Ltd", { align: "center" })
       .moveDown(2);
 
     // Add current date and time and Supplier's name
@@ -86,14 +86,14 @@ router.get("/deliveryreport", async (req, res) => {
     //   .fillColor("white")
     //   .image(logo, 10, 10, { width: 80, height: 80 })
     //   .fontSize(40)
-    //   .text("Southern Agro Serve (Pvt) Ltd\n", { align: "center" })
+    //   .text("Prime Construct (Pvt) Ltd\n", { align: "center" })
     //   .moveDown(2);
 
     // doc
     //   .fontSize(40)
     //   .fillColor("blue")
     //   .text(
-    //     "Southern Agro Serve (Pvt) Ltd\n\n\n",
+    //     "Prime Construct (Pvt) Ltd\n\n\n",
     //     { align: "center" },
     //     100,
     //     100

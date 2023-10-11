@@ -106,31 +106,31 @@ const AllInvoice = () => {
   return (
     <>
       <div>
-        <h1 className='text-center bg-darkgreen text-white p-2'>
+        <h1 className="text-center bg-darkgreen text-white p-2">
           Customer Invoices
         </h1>
-        <div className='d-flex justify-content-between'>
-          <a href='/allInv' className='btn btn-danger my-2'>
+        <div className="d-flex justify-content-between">
+          <a href="/allInv" className="btn btn-danger my-2">
             Reload Invoice List
           </a>
           <div>
-            <Link className='btn btn-info mb-2' to={"/addInv"} role='button'>
+            <Link className="btn btn-info mb-2" to={"/addInv"} role="button">
               Add Invoice
             </Link>
           </div>
         </div>
-        <hr className='my-4' />
+        <hr className="my-4" />
         {loading ? (
-          <Spinner splash='Loading Invoices...' />
+          <Spinner splash="Loading Invoices..." />
         ) : (
           <>
-            <form className='d-flex' onSubmit={handleSearchSubmit}>
+            <form className="d-flex" onSubmit={handleSearchSubmit}>
               <input
-                type='text'
-                name='searchInput'
-                id='searchInput'
-                className='form-control my-2'
-                placeholder='Search Invoice...'
+                type="text"
+                name="searchInput"
+                id="searchInput"
+                className="form-control my-2"
+                placeholder="Search Invoice..."
                 value={searchInput}
                 // onChange={searchHandle}
                 // onChange={handleInputChange}
@@ -141,7 +141,7 @@ const AllInvoice = () => {
                 }}
                 // onChange={(e) => setSearchInput(e.target.value)}
               />
-              <button type='submit' className='btn btn-info mx-2 my-2'>
+              <button type="submit" className="btn btn-info mx-2 my-2">
                 Search
               </button>
               {/* <a href='/another-page'>
@@ -178,7 +178,7 @@ const AllInvoice = () => {
                   <p>
                     Your Total Invoices: <strong>{invoices.length}</strong>{" "}
                   </p>
-                  <table className='table table-hover'>
+                  <table className="table table-hover">
                     <thead>
                       <tr>
                         {/* <th
@@ -188,26 +188,26 @@ const AllInvoice = () => {
                           Invoice ID
                         </th> */}
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Invoice No
                         </th>
 
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "15%", whiteSpace: "nowrap" }}
                         >
                           Date of Issued
                         </th>
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "15%", whiteSpace: "nowrap" }}
                         >
                           Customer Name
                         </th>
                         <th
-                          scope='col'
+                          scope="col"
                           style={{
                             width: "20%",
                             whiteSpace: "nowrap",
@@ -217,7 +217,7 @@ const AllInvoice = () => {
                           Mobile Number
                         </th>
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Business Name
@@ -229,7 +229,7 @@ const AllInvoice = () => {
                           Address
                         </th> */}
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Payment method
@@ -253,7 +253,7 @@ const AllInvoice = () => {
                           Cheque Number
                         </th> */}
                         <th
-                          scope='col'
+                          scope="col"
                           style={{ width: "10%", whiteSpace: "nowrap" }}
                         >
                           Paid Amount
@@ -271,7 +271,7 @@ const AllInvoice = () => {
                             setShowModal(true);
                           }}
                         >
-                          <th scope='row'>{invoice.invoiceNo}</th>
+                          <th scope="row">{invoice.invoiceNo}</th>
                           {/* <td>{invoice.invoiceNo}</td> */}
                           <td>{invoice.issuedDate}</td>
                           <td>{invoice.cusName}</td>
@@ -298,7 +298,7 @@ const AllInvoice = () => {
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           {/* <Modal.Title>{modalData.firstname}</Modal.Title> */}
-          <Modal.Title>Southern Agro Invoice</Modal.Title>
+          <Modal.Title>Prime Construct Invoice</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -341,11 +341,11 @@ const AllInvoice = () => {
 
         <Modal.Footer>
           {/* <Link className='btn btn-info' to={`/updateInv/${modalData._id}`}> */}
-          <Link className='btn btn-info' to={`/editInv/${modalData._id}`}>
+          <Link className="btn btn-info" to={`/editInv/${modalData._id}`}>
             Edit
           </Link>
           <button
-            className='btn btn-danger'
+            className="btn btn-danger"
             onClick={() => modalData && deleteInvoice(modalData._id)}
           >
             Delete
@@ -359,7 +359,7 @@ const AllInvoice = () => {
           </button> */}
 
           <button
-            className='btn btn-warning'
+            className="btn btn-warning"
             onClick={() => setShowModal(false)}
           >
             Close
