@@ -59,6 +59,7 @@ const Header = () => {
           <span className="text-white" style={{ paddingRight: "25px" }}>
             {user.name}
           </span>
+          {/* YERAN */}
           {user.role === "Site Manager" && (
             <img
               src={
@@ -70,10 +71,11 @@ const Header = () => {
               height="40"
             />
           )}
+          {/* BHANUKA */}
           {user.role === "Supplier" && (
             <img
               src={
-                "https://media.licdn.com/dms/image/C4D03AQFsJckPtRs40g/profile-displayphoto-shrink_400_400/0/1624634415418?e=1689811200&v=beta&t=hUYU6SlT-mkWV-Z-IQTMU0rmw2lMZ_Y5uW5_XOZ3VuA"
+                "https://media.licdn.com/dms/image/D5603AQEERFT0Zy0nWA/profile-displayphoto-shrink_400_400/0/1687323514148?e=1702512000&v=beta&t=U0C30TuHRNWO3ghlN1Wu1BRa4eIOW7scANjqyd0gYqM"
               }
               alt={user.name}
               className="rounded-circle mr-2"
@@ -81,7 +83,7 @@ const Header = () => {
               height="40"
             />
           )}
-
+          {/* YASITHA */}
           {user.role === "Staff" && (
             <img
               src={

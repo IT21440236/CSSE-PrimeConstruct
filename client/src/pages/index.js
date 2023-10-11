@@ -125,7 +125,7 @@ const Index = () => {
 
   // show a toast message when the component mounts
   // React.useEffect(() => {
-  //   toast.success("Welcome to Employee Management!");
+  //   toast.success("Welcome to Site Manager!");
   // }, []);
 
   return (
