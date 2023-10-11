@@ -132,17 +132,9 @@ const Register = () => {
                 fdprocessedid="8n2of"
               >
                 <option value="">Select Role</option>
-                <option value="Administrator">Administrator</option>
-                <option value="HR Manager">HR Manager</option>
-                <option value="Delivery Manager">Delivery Manager</option>
-                <option value="Vehicle Manager">Vehicle Manager</option>
-                <option value="Customer Manager">Customer Manager</option>
-                <option value="Inventory Control Manager">
-                  Inventory Control Manager
-                </option>
-                <option value="Financial Manager">Financial Manager</option>
-                <option value="Supplier Manager">Supplier Manager</option>
-                <option value="Driver">Driver</option>
+                <option value="Administrator">Site Manager</option>
+                <option value="HR Manager">Supplier</option>
+                <option value="Delivery Manager">Staff</option>
               </select>
             </div>
             <input

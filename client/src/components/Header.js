@@ -59,7 +59,7 @@ const Header = () => {
           <span className="text-white" style={{ paddingRight: "25px" }}>
             {user.name}
           </span>
-          {user.role === "HR Manager" && (
+          {user.role === "Site Manager" && (
             <img
               src={
                 "https://media.licdn.com/dms/image/D5603AQFmkMSgJ69a7g/profile-displayphoto-shrink_400_400/0/1693218056068?e=1702512000&v=beta&t=LhE6xpOKeityF5EKrfFE0x1k5dzz3VPkSJivgNYiwKw"
@@ -70,7 +70,7 @@ const Header = () => {
               height="40"
             />
           )}
-          {user.role === "Delivery Manager" && (
+          {user.role === "Supplier" && (
             <img
               src={
                 "https://media.licdn.com/dms/image/C4D03AQFsJckPtRs40g/profile-displayphoto-shrink_400_400/0/1624634415418?e=1689811200&v=beta&t=hUYU6SlT-mkWV-Z-IQTMU0rmw2lMZ_Y5uW5_XOZ3VuA"
@@ -142,7 +142,7 @@ const Header = () => {
               height="40"
             />
           )}
-          {user.role === "Inventory Control Manager" && (
+          {user.role === "Staff" && (
             <img
               src={
                 "https://media.licdn.com/dms/image/C4E03AQFRJ6istEexFg/profile-displayphoto-shrink_100_100/0/1624459091173?e=1689206400&v=beta&t=qz1g4OvzvCo1fOTGZFzfWhh7q2fvfvRpyWzaRm6L4NU"
