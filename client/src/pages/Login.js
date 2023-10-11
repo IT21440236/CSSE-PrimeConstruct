@@ -1,18 +1,18 @@
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
-import AuthContext from '../context/AuthContext';
-import ToastContext from '../context/ToastContext';
+import AuthContext from "../context/AuthContext";
+import ToastContext from "../context/ToastContext";
 
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 
 const Login = () => {
   const { toast } = useContext(ToastContext);
   const { loginUser } = useContext(AuthContext);
 
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleInputChange = (event) => {
@@ -26,14 +26,14 @@ const Login = () => {
     event.preventDefault(); //prevents the page from reloading/refreshing
 
     if (!credentials.email || !credentials.password) {
-      toast.error('Please enter all the required fields!');
+      toast.error("Please enter all the required fields!");
       return;
     }
 
     loginUser(credentials);
   };
 
-  var button = document.getElementById('mainButton');
+  var button = document.getElementById("mainButton");
 
   // var openForm = function () {
   //   button.className = "active";
@@ -84,12 +84,12 @@ const Login = () => {
                 type="submit"
                 value="Login"
                 className="btn btn-primary my-3"
-                style={{ backgroundColor: 'black' }}
+                style={{ backgroundColor: "black" }}
               />
             </center>
-            {/* <p>
+            <p>
               Don't have an account? <Link to="/register">Create One</Link>
-            </p> */}
+            </p>
           </form>
         </div>
       </div>
