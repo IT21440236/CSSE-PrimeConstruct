@@ -15,6 +15,7 @@ import {
   faUsers,
   faMoneyBillAlt,
   faCalendarAlt,
+  faFileSignature,
   faFileAlt,
   faSignInAlt,
   faSignOutAlt,
@@ -78,7 +79,7 @@ const Navbar = ({ title = "Prime Construct" }) => {
           {/* Site Manager - Yeran Kodithuwakku*/}
           {user && user.role === "Site Manager" ? (
             <>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/" role="button" className="nav-link">
                   <FontAwesomeIcon
                     icon={faChartBar}
@@ -122,7 +123,51 @@ const Navbar = ({ title = "Prime Construct" }) => {
                   />
                   Report
                 </Link>
+              </li> */}
+
+              <li className="nav-item">
+                <Link to="/draftorderlist" role="button" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faFileSignature}
+                    style={{ marginRight: "10px", color: "white" }}
+                  />
+                  Draft Order
+                </Link>
               </li>
+
+              <li className="nav-item">
+                <Link to="/orderlist" role="button" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faFileAlt}
+                    style={{ marginRight: "10px", color: "white" }}
+                  />
+                  Placed Order
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to="/inquirymanager" role="button" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faFileAlt}
+                    style={{ marginRight: "10px", color: "white" }}
+                  />
+                  Inquiry
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to="/supplierproductlist" role="button" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faFileAlt}
+                    style={{ marginRight: "10px", color: "white" }}
+                  />
+                  Supplier Product List
+                </Link>
+              </li>
+
+
+
+
               <li
                 className="nav-item"
                 onClick={() => {
@@ -142,133 +187,220 @@ const Navbar = ({ title = "Prime Construct" }) => {
               </li>
             </>
           ) : // Supplier - Bhanuka Dayananda
-          user && user.role === "Supplier" ? (
-            <>
-              <li className="nav-item">
-                <Link to="/allsalesreps" role="button" className="nav-link">
-                  <FontAwesomeIcon
-                    icon={faUserTie}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Sales Representatives
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/myschedules" role="button" className="nav-link">
-                  <FontAwesomeIcon
-                    icon={faTruck}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Delivery Schedules
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/createdeliveryreport"
-                  role="button"
-                  className="nav-link"
+            user && user.role === "Supplier" ? (
+              <>
+                {/* <li className="nav-item">
+                  <Link to="/allsalesreps" role="button" className="nav-link">
+                    <FontAwesomeIcon
+                      icon={faUserTie}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Sales Representatives
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/myschedules" role="button" className="nav-link">
+                    <FontAwesomeIcon
+                      icon={faTruck}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Delivery Schedules
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to="/createdeliveryreport"
+                    role="button"
+                    className="nav-link"
+                  >
+                    <FontAwesomeIcon
+                      icon={faFileAlt}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Report
+                  </Link>
+                </li>
+                <li
+                  className="nav-item"
+                  onClick={() => {
+                    setUser(null);
+                    localStorage.clear();
+                    toast.success("Logout Successful!");
+                    navigate("/login", { replace: true });
+                  }}
                 >
-                  <FontAwesomeIcon
-                    icon={faFileAlt}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Report
-                </Link>
-              </li>
-              <li
-                className="nav-item"
-                onClick={() => {
-                  setUser(null);
-                  localStorage.clear();
-                  toast.success("Logout Successful!");
-                  navigate("/login", { replace: true });
-                }}
-              >
-                <button className="btn btn-danger">
-                  <FontAwesomeIcon
-                    icon={faSignOutAlt}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Logout
-                </button>
-              </li>
-            </>
-          ) : // Staff - Yasitha Dewmin
-          user && user.role === "Staff" ? (
-            <>
-              <li className="nav-item">
-                <Link to="/myprofits" role="button" className="nav-link">
-                  <FontAwesomeIcon
-                    icon={faChartBar}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Profits
-                </Link>
-              </li>
+                  <button className="btn btn-danger">
+                    <FontAwesomeIcon
+                      icon={faSignOutAlt}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Logout
+                  </button>
+                </li> */}
 
-              <li className="nav-item">
-                <Link to="/mycategories" role="button" className="nav-link">
-                  <FontAwesomeIcon
-                    icon={faFolder}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Categories
-                </Link>
-              </li>
+                <li className="nav-item">
+                  <Link to="/supplierproductlist" role="button" className="nav-link">
+                    <FontAwesomeIcon
+                      icon={faCalendarAlt}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Supplier Product
+                  </Link>
+                </li>
 
-              <li className="nav-item">
-                <Link to="/mystocks" role="button" className="nav-link">
-                  <FontAwesomeIcon
-                    icon={faClipboardList}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Inventory
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/stockreport" role="button" className="nav-link">
-                  <FontAwesomeIcon
-                    icon={faFileAlt}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Report
-                </Link>
-              </li>
-              <li
-                className="nav-item"
-                onClick={() => {
-                  setUser(null);
-                  localStorage.clear();
-                  toast.success("Logout Successful!");
-                  navigate("/login", { replace: true });
-                }}
-              >
-                <button className="btn btn-danger">
-                  <FontAwesomeIcon
-                    icon={faSignOutAlt}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Logout
-                </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="nav-item">
-                <Link
-                  to="/login"
-                  className="nav-link"
-                  style={{ textDecoration: "none" }}
+                <li className="nav-item">
+                  <Link to="/suppliersideproductlist" role="button" className="nav-link">
+                    <FontAwesomeIcon
+                      icon={faCalendarAlt}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Supplier Side Product
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link to="/supplierorderlist" role="button" className="nav-link">
+                    <FontAwesomeIcon
+                      icon={faCalendarAlt}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Supplier Order
+                  </Link>
+                </li>
+                <li
+                  className="nav-item"
+                  onClick={() => {
+                    setUser(null);
+                    localStorage.clear();
+                    toast.success("Logout Successful!");
+                    navigate("/login", { replace: true });
+                  }}
                 >
-                  <FontAwesomeIcon
-                    icon={faSignInAlt}
-                    style={{ marginRight: "10px", color: "white" }}
-                  />
-                  Login
-                </Link>
-              </li>
-            </>
-          )}
+                  <button className="btn btn-danger">
+                    <FontAwesomeIcon
+                      icon={faSignOutAlt}
+                      style={{ marginRight: "10px", color: "white" }}
+                    />
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : // Staff - Yasitha Dewmin
+              user && user.role === "Staff" ? (
+                <>
+                  {/* <li className="nav-item">
+                    <Link to="/myprofits" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faChartBar}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Profits
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link to="/mycategories" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faFolder}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Categories
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link to="/mystocks" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faClipboardList}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Inventory
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/stockreport" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faFileAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Report
+                    </Link>
+                  </li> */}
+
+                  <li className="nav-item">
+                    <Link to="/orderlistviewstaff" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faCalendarAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Order List Staff
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link to="/siteliststaff" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faCalendarAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Site
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link to="/invoicelist" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faCalendarAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Invoice
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link to="/reciptlist" role="button" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faCalendarAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Receipt
+                    </Link>
+                  </li>
+                  <li
+                    className="nav-item"
+                    onClick={() => {
+                      setUser(null);
+                      localStorage.clear();
+                      toast.success("Logout Successful!");
+                      navigate("/login", { replace: true });
+                    }}
+                  >
+                    <button className="btn btn-danger">
+                      <FontAwesomeIcon
+                        icon={faSignOutAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link
+                      to="/login"
+                      className="nav-link"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <FontAwesomeIcon
+                        icon={faSignInAlt}
+                        style={{ marginRight: "10px", color: "white" }}
+                      />
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
         </ul>
       </div>
     </>

@@ -20,6 +20,13 @@ app.use(morgan("tiny")); //Morgan logs useful information about HTTP requests an
 
 app.use(require("cors")()); //used in Authorization
 
+const draftrouter = require("./routes/draftorder")
+const orderrouter = require("./routes/managerorder")
+const inquiryrouter = require("./routes/inquiry")
+const supproductrouter = require("./routes/supProduct")
+
+
+
 //routes
 app.use("/api", require("./routes/auth"));
 app.use("/api/", require("./routes/contact"));
@@ -54,6 +61,13 @@ app.use("/api", require("./routes/profit"));
 app.use("/api", require("./routes/stockreport"));
 
 //Yasitha***************************************************************************
+
+// Site Manager
+app.use("/api/", draftrouter);
+app.use("/api/", orderrouter);
+app.use("/api/", inquiryrouter);
+
+app.use("/api/", supproductrouter);
 
 //server configurations.
 const PORT = process.env.PORT || 8000; //3000 port we will use  for frontend

@@ -7,14 +7,15 @@ import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 
-export const InvoiceList = () => {
-    const [showModal,setShowModal] = useState(false);
+export const ReceiptList = () => {
+  const [showModal, setShowModal] = useState(false);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const addinvoice = () => {
-      navigate("/addinvoice")
+    const addreceipt = () => {
+      navigate("/addrecipt")
     }
+
 
   return (
     <>
@@ -25,9 +26,9 @@ export const InvoiceList = () => {
       } */}
       <div className='mt-5'>
         <div className="container">
-        <div className='d-flex'>
-                <h2>Invoice List</h2>
-            </div>
+          <div className='d-flex'>
+            <h2>Receipt List</h2>
+          </div>
           {/* <div className='add_btn mt-2 mb-2'>
                 <NavLink to="/registerVehicle" className='btn btn-primary'>Add data</NavLink>
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={searchHandle}/>
@@ -48,7 +49,7 @@ export const InvoiceList = () => {
               </Form>
             </div>
             <div className="add_btn ">
-              <Button variant="primary" className="btn-info" onClick={addinvoice} ><b>+ Create Invoice</b></Button>
+              <Button variant="primary" className="btn-info" onClick={addreceipt} ><b>+ Create Receipt</b></Button>
             </div>
           </div>
 
@@ -59,11 +60,9 @@ export const InvoiceList = () => {
               <thead>
                 <tr className='tHead'>
                   <th scope="col"><b>Order No</b></th>
-                  <th scope="col"><b>Bank</b></th>
-                  <th scope="col"><b>Branch</b></th>
-                  <th scope="col"><b>Account No</b></th>
-                  <th scope="col"><b>Amount</b></th>
-                  <th scope="col"><b>Deposit Date</b></th>
+                  <th scope="col"><b>Product Name</b></th>
+                  <th scope="col"><b>Product Quantity</b></th>
+                  <th scope="col"><b>Delivery Date</b></th>
                 </tr>
               </thead>
               <tbody>
@@ -94,8 +93,8 @@ export const InvoiceList = () => {
         </Modal.Body>
 
         <Modal.Footer>
-        <NavLink to="" className="btn btn-warning">Update</NavLink>
-        <button className="btn btn-danger" onClick="">Delete</button>
+          <NavLink to="" className="btn btn-warning">Update</NavLink>
+          <button className="btn btn-danger" onClick="">Delete</button>
         </Modal.Footer>
       </Modal>
     </>

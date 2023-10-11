@@ -7,15 +7,13 @@ import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 
-export const InvoiceList = () => {
+export const OrderListViewStaff = () => {
     const [showModal,setShowModal] = useState(false);
-
     const navigate = useNavigate();
 
-    const addinvoice = () => {
-      navigate("/addinvoice")
+    const approvebystaff = () => {
+      navigate("/approveorderstaff")
     }
-
   return (
     <>
       {/* {
@@ -26,7 +24,7 @@ export const InvoiceList = () => {
       <div className='mt-5'>
         <div className="container">
         <div className='d-flex'>
-                <h2>Invoice List</h2>
+                <h2>Order List View By Staff</h2>
             </div>
           {/* <div className='add_btn mt-2 mb-2'>
                 <NavLink to="/registerVehicle" className='btn btn-primary'>Add data</NavLink>
@@ -47,28 +45,87 @@ export const InvoiceList = () => {
                 <Button variant="success" className='search_btn btn-info'>Search</Button>
               </Form>
             </div>
-            <div className="add_btn ">
-              <Button variant="primary" className="btn-info" onClick={addinvoice} ><b>+ Create Invoice</b></Button>
-            </div>
+            
           </div>
 
-          
+          <div className="filter_div mt-5 d-flex justify-content-between flex-wrap">
+            <div className="filter_gender">
+              <div className="filter">
+                <h3>Filter By Fuel Type</h3>
+                <div className="gender d-flex justify-content-between">
+                  <Form.Check
+                    type={"radio"}
+                    label={`All`}
+                    name="fuel"
+                    value={"All"}
+                    defaultChecked
+                    onChange=""
+                  />
+                  <Form.Check
+                    type={"radio"}
+                    label={`Diesal`}
+                    name="fuel"
+                    value={"Diesal"}
+                    onChange=""
+                  />
+                  <Form.Check
+                    type={"radio"}
+                    label={`Petrol`}
+                    name="fuel"
+                    value={"Petrol"}
+                    onChange=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="filter_status">
+              <div className="status1">
+                <h3>Filter By Status</h3>
+                <div className="status_radio d-flex justify-content-between">
+                  <Form.Check
+                    type={"radio"}
+                    label={`All`}
+                    name="status"
+                    value={"All"}
+                    defaultChecked
+                    onChange=""
+                  />
+                  <Form.Check
+                    type={"radio"}
+                    label={`Active`}
+                    name="status"
+                    value={"Active"}
+                    onChange=""
+                  />
+                  <Form.Check
+                    type={"radio"}
+                    label={`InActive`}
+                    name="status"
+                    value={"InActive"}
+                    onChange=""
+                  />
+                </div>
+              </div>
+            </div>
+
+
+          </div>
 
           <Card className='shadow'>
             <table class="table">
               <thead>
                 <tr className='tHead'>
-                  <th scope="col"><b>Order No</b></th>
-                  <th scope="col"><b>Bank</b></th>
-                  <th scope="col"><b>Branch</b></th>
-                  <th scope="col"><b>Account No</b></th>
-                  <th scope="col"><b>Amount</b></th>
-                  <th scope="col"><b>Deposit Date</b></th>
+                  <th scope="col"><b>Order Id</b></th>
+                  <th scope="col"><b>Site Name</b></th>
+                  <th scope="col"><b>Supplier Name</b></th>
+                  <th scope="col"><b>Product</b></th>
+                  <th scope="col"><b>Total Price</b></th>
+                  <th scope="col"><b>Status</b></th>
                 </tr>
               </thead>
               <tbody>
-
-
+              <Button variant="primary" className="btn-info" onClick={approvebystaff} ><b>Approve Order By Staff</b></Button>
               </tbody>
             </table>
           </Card>
