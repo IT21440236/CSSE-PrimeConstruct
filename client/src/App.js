@@ -129,7 +129,7 @@ const App = () => {
                 <Route path='/suppliersideproductlist' exact element={<SupplierSideProductList />} />
                 <Route path='/supplierorderlist' exact element={<SupplierOrderList />} />
                 <Route path='/addmaterial' exact element={<AddMaterials />} />
-                <Route path='/updatematerial' exact element={<UpdateMaterials />} />
+                <Route path='/suppliersideproductlist/updatematerial/:id' exact element={<UpdateMaterials />} />
                 <Route path='/placedrejectorder' exact element={<PlacedRejectOrder />} />
 
                 {/* Staff UI */}

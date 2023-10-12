@@ -37,7 +37,7 @@ orderSchema.pre("save", async function (next) {
     }
   });
 
-const orders = mongoose.model("orders", orderSchema);
+const orders = mongoose.model("mngorders", orderSchema);
 
 // const validateVehicle = (data) => {
 //     const schema = Joi.object({

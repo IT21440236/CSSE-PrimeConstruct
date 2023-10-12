@@ -15,7 +15,7 @@ export const SupplierSideProductList = () => {
 
 
   const [search, setSearch] = useState("");
-  const [showModal,setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const navigate = useNavigate();
   const [getproductdata, setProductdata] = useState([]);
@@ -30,7 +30,7 @@ export const SupplierSideProductList = () => {
 
   const getdata = async (e) => {
 
-    const res = await fetch(`/api/getProduct`, {
+    const res = await fetch(`/api/getProduct?search=${search}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -51,10 +51,36 @@ export const SupplierSideProductList = () => {
     }
   }
 
+  const deleteproduct = async (id) => {
+    if (window.confirm("Are you sure want to delete this order details ? ")) {
+      const res2 = await fetch(`/api/deleteproductsup/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        }
+      });
+
+      const deletedata = await res2.json();
+      console.log(deletedata);
+
+      if (res2.status === 422 || !deletedata) {
+        toast.error(deletedata.error);
+        console.log("error");
+      } else {
+        toast.success(`One Product is deleted`)
+        //setShow(true);
+        console.log("user deleted");
+        getdata();
+      }
+    }
+  }
+
   useEffect(() => {
     !user && navigate("/login", { replace: true });
     getdata();
-  }, [])
+  }, [search])
 
   return (
     <>
@@ -82,7 +108,7 @@ export const SupplierSideProductList = () => {
                   className="me-2"
                   aria-label="Search"
                   //onChange={searchHandle}
-                  onChange=""
+                  onChange={(e) => setSearch(e.target.value)}
                 />
                 <Button variant="success" className='search_btn btn-info'>Search</Button>
               </Form>
@@ -96,6 +122,8 @@ export const SupplierSideProductList = () => {
             <table class="table">
               <thead>
                 <tr className='tHead'>
+                  <th scope="col"><b>Product ID</b></th>
+                  <th scope="col"><b>Supplier Name</b></th>
                   <th scope="col"><b>Product Name</b></th>
                   <th scope="col"><b>Product Price</b></th>
                   <th scope="col"><b>Product Description</b></th>
@@ -111,7 +139,8 @@ export const SupplierSideProductList = () => {
                           setModalData(element)
                           setShowModal(true);
                         }}>
-                          <th scope="row">{id+1}</th>
+                          <th scope="row">{element.supproductid}</th>
+                          <td>{element.supplierName}</td>
                           <td>{element.productName}</td>
                           <td>{element.productPrice}</td>
                           <td>{element.productDescription}</td>
@@ -134,19 +163,19 @@ export const SupplierSideProductList = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{modalData._id}</Modal.Title>
+          <Modal.Title>{modalData.supproductid}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-        <h3>{modalData._id}</h3>
+          <h3>{modalData.supproductid}</h3>
           <p><strong>Product Name :</strong> {modalData.productName}</p>
           <p><strong>Required Date :</strong> {modalData.productPrice}</p>
           <p><strong>Supplier :</strong>{modalData.productDescription}</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <NavLink to="" className="btn btn-warning">Update</NavLink>
-          <button className="btn btn-danger" onClick="">Delete</button>
+          <NavLink to={`updatematerial/${modalData._id}`} className="btn btn-warning">Update</NavLink>
+          <button className="btn btn-danger" onClick={() => deleteproduct(modalData._id)}>Delete</button>
         </Modal.Footer>
       </Modal>
     </>

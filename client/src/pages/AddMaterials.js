@@ -10,9 +10,10 @@ export const AddMaterials = () => {
     const { toast } = useContext(ToastContext);
 
     const [inpval, setINP] = useState({
-        productName:"" ,
-        productPrice:"",
-        productDescription:""
+        supplierName: "",
+        productName: "",
+        productPrice: "",
+        productDescription: ""
     })
 
     //const [show, setShow] = useState(false);
@@ -31,9 +32,9 @@ export const AddMaterials = () => {
     const addinpdata = async (e) => {
         e.preventDefault();
 
-        const { productName ,productPrice, productDescription } = inpval;
+        const { supplierName, productName, productPrice, productDescription } = inpval;
 
-        if (!productName || !productPrice || !productDescription) {
+        if (!supplierName || !productName || !productPrice || !productDescription) {
             toast.error("Please enter all required fields")
             return false
         }
@@ -46,7 +47,7 @@ export const AddMaterials = () => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
-                productName ,productPrice, productDescription
+                supplierName, productName, productPrice, productDescription
             })
         });
 
@@ -74,7 +75,17 @@ export const AddMaterials = () => {
                 <Form className='mt-4'>
                     <div className="row">
 
-                    <Form.Group className="mb-3" controlId="formBasicProductName">
+                        <Form.Group className="mb-3" controlId="formBasicProductName">
+                            <Form.Label>Supplier Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="supplierName"
+                                value={inpval.supplierName}
+                                onChange={setdata}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicProductName">
                             <Form.Label>Product Name</Form.Label>
                             <Form.Control
                                 type="text"

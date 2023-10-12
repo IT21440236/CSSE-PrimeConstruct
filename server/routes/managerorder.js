@@ -4,25 +4,25 @@ const router = express.Router();
 const orders = require("../models/managerorder");
 const auth = require("../middlewares/auth");
 
-router.post("/addManagerOrder",auth, async(req, res) => {
+router.post("/addManagerOrder", auth, async (req, res) => {
     //console.log(req.body);
 
-    const {draftID, siteName,supplier, placedDate, requiredDate, productName, productQty, orderstatus} = req.body;
+    const { draftID, siteName, supplier, placedDate, requiredDate, productName, productQty, orderstatus } = req.body;
 
-    if(!draftID || !siteName || !supplier || !placedDate || !requiredDate || !productName || !productQty || !orderstatus){
+    if (!draftID || !siteName || !supplier || !placedDate || !requiredDate || !productName || !productQty || !orderstatus) {
         return res.status(422).json("plz fill the data");
     }
 
     try {
         // const fueldate = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-        
-            const addorder = new orders({
-                draftID, siteName,supplier, placedDate, requiredDate, productName, productQty, orderstatus
-            });
 
-            await addorder.save();
-            res.status(201).json(addorder);
-            console.log(addorder);
+        const addorder = new orders({
+            draftID, siteName, supplier, placedDate, requiredDate, productName, productQty, orderstatus
+        });
+
+        await addorder.save();
+        res.status(201).json(addorder);
+        console.log(addorder);
 
     } catch (error) {
         res.status(422).json(error);
@@ -30,12 +30,22 @@ router.post("/addManagerOrder",auth, async(req, res) => {
 })
 
 //get vehicle data
-router.get("/getManagerOrderdata",auth, async (req, res) => {
+router.get("/getManagerOrderdata", auth, async (req, res) => {
     const search = req.query.search || ""
 
+    // const query = {
+    //     supplier: { $regex: search, $options: "i" },
+    //     draftID: { $regex: search, $options: "i" },
+    //     orderid: { $regex: search, $options: "i" },
+    // }
+
     const query = {
-        supplier : {$regex:search, $options: "i"},
-    }
+        $or: [
+            { supplier: { $regex: search, $options: "i" } },
+            { draftID: { $regex: search, $options: "i" } },
+            { orderid: { $regex: search, $options: "i" } }
+        ]
+    };
 
     try {
         const orderdata = await orders.find(query);
@@ -46,7 +56,7 @@ router.get("/getManagerOrderdata",auth, async (req, res) => {
     }
 })
 
-router.get("/getOneOrder/:id",auth, async (req, res) => {
+router.get("/getOneOrder/:id", auth, async (req, res) => {
     try {
         console.log(req.params);
         const { id } = req.params;
@@ -59,7 +69,7 @@ router.get("/getOneOrder/:id",auth, async (req, res) => {
     }
 })
 
-router.delete("/deleteordermng/:id",auth, async (req, res) => {
+router.delete("/deleteordermng/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -75,7 +85,7 @@ router.delete("/deleteordermng/:id",auth, async (req, res) => {
 router.patch("/updateordermng/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
-        const { siteName,supplier, placedDate, requiredDate, productName, productQty, orderstatus } = req.body;
+        const { siteName, supplier, placedDate, requiredDate, productName, productQty, orderstatus } = req.body;
         //const file = req.file ? req.file.filename : vehicleImg1
 
         // const dateUpdated = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
@@ -84,10 +94,10 @@ router.patch("/updateordermng/:id", auth, async (req, res) => {
         //     new:true
         // });
 
-        const updatedorder = await orders.findByIdAndUpdate({ _id:id }, {
-            siteName,supplier, placedDate, requiredDate, productName, productQty, orderstatus
+        const updatedorder = await orders.findByIdAndUpdate({ _id: id }, {
+            siteName, supplier, placedDate, requiredDate, productName, productQty, orderstatus
         }, {
-            new:true
+            new: true
         });
 
         console.log(updatedorder);

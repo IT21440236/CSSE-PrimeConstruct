@@ -120,7 +120,7 @@ export const DraftOrderList = () => {
             <table class="table">
               <thead>
                 <tr className='tHead'>
-                  <th scope="col"><b>Id</b></th>
+                  <th scope="col"><b>Draft Id</b></th>
                   {/* <th scope="col"><b>Site Name</b></th> */}
                   <th scope="col"><b>Supplier Name</b></th>
                   <th scope="col"><b>Placed date</b></th>

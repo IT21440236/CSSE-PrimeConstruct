@@ -110,10 +110,12 @@ export const OrderList = () => {
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
-    doc.text("Southern Agro Serve (Pvt) Ltd \nVehicle Running Records \n\n", marginLeft, 40);
-    const headers = [["Site Name", "Supplier", "Product Name", "Product Qty", "Total Price", "Placed Date", "Required Date"]];
+    doc.text("PRIME CONSTRUCTION \nPlaced Order \n\n", marginLeft, 40);
+    const headers = [["OrderId", "DraftID", "Site Name", "Supplier", "Product Name", "Product Qty", "Total Price", "Placed Date", "Required Date"]];
 
     const data = getorderdata.map((ele) => [
+      ele.orderid,
+      ele.draftID,
       ele.siteName,
       ele.supplier,
       ele.productName,
@@ -212,6 +214,7 @@ export const OrderList = () => {
               <thead>
                 <tr className='tHead'>
                   <th scope="col"><b>Order Id</b></th>
+                  <th scope="col"><b>Draft Id</b></th>
                   <th scope="col"><b>Site Name</b></th>
                   <th scope="col"><b>Supplier Name</b></th>
                   <th scope="col"><b>Product</b></th>
@@ -231,7 +234,8 @@ export const OrderList = () => {
                           setModalData(element)
                           setShowModal(true);
                         }}>
-                          <th scope="row">{id + 1}</th>
+                          <th scope="row">{element.orderid}</th>
+                          <th scope="row">{element.draftID}</th>
                           <td>{element.siteName}</td>
                           <td>{element.supplier}</td>
                           <td>{element.productName}</td>
