@@ -122,9 +122,9 @@ export const DraftOrderList = () => {
                 <tr className='tHead'>
                   <th scope="col"><b>Draft Id</b></th>
                   {/* <th scope="col"><b>Site Name</b></th> */}
-                  <th scope="col"><b>Supplier Name</b></th>
                   <th scope="col"><b>Placed date</b></th>
                   <th scope="col"><b>Required Date</b></th>
+                  <th scope="col"><b>Supplier Name</b></th>
                   <th scope="col"><b>Status</b></th>
                 </tr>
               </thead>

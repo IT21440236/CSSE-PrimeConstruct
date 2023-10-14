@@ -24,6 +24,7 @@ const draftrouter = require("./routes/draftorder")
 const orderrouter = require("./routes/managerorder")
 const inquiryrouter = require("./routes/inquiry")
 const supproductrouter = require("./routes/supProduct")
+const suporderrouter = require("./routes/supOrderApproved")
 
 
 
@@ -68,6 +69,7 @@ app.use("/api/", orderrouter);
 app.use("/api/", inquiryrouter);
 
 app.use("/api/", supproductrouter);
+app.use("/api/", suporderrouter);
 
 //server configurations.
 const PORT = process.env.PORT || 8000; //3000 port we will use  for frontend

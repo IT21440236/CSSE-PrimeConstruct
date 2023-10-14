@@ -165,7 +165,15 @@ const Navbar = ({ title = "Prime Construct" }) => {
                 </Link>
               </li>
 
-
+              <li className="nav-item">
+                <Link to="/supplierapproveorderlist" role="button" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faFileAlt}
+                    style={{ marginRight: "10px", color: "white" }}
+                  />
+                  Supplier Accept Order List
+                </Link>
+              </li>
 
 
               <li
@@ -239,12 +247,12 @@ const Navbar = ({ title = "Prime Construct" }) => {
                 </li> */}
 
                 <li className="nav-item">
-                  <Link to="/supplierproductlist" role="button" className="nav-link">
+                  <Link to="/supapproveorder" role="button" className="nav-link">
                     <FontAwesomeIcon
                       icon={faCalendarAlt}
                       style={{ marginRight: "10px", color: "white" }}
                     />
-                    Supplier Product
+                    Approve/Reject Order
                   </Link>
                 </li>
 

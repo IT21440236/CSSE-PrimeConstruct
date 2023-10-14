@@ -6,15 +6,89 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
+import AuthContext from "../context/AuthContext";
+import ToastContext from "../context/ToastContext";
 
 export const SupplierOrderList = () => {
 
-    const [showModal,setShowModal] = useState(false);
-    const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { toast } = useContext(ToastContext);
 
-    const placedorrejectorder = () => {
-        navigate("/placedrejectorder")
+  const [getorderdata, setOrderdata] = useState([]);
+  const [getproductdata, setProductdata] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({});
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const placedorrejectorder = () => {
+    navigate("/placedrejectorder")
+  }
+
+  const getdata = async (e) => {
+
+    const res = await fetch(`/api/getManagerOrderdata?search=${search}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       }
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (res.status === 422 || !data) {
+      console.log("error ");
+
+    } else {
+
+      const acceptedOrders = data.filter((order) => order.orderstatus === "Accept");
+
+      setOrderdata(acceptedOrders)
+      console.log("get data");
+    }
+  }
+
+  const getProduct = async (e) => {
+
+    const res = await fetch(`/api/getProduct`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (res.status === 422 || !data) {
+      console.log("error ");
+
+    } else {
+      setProductdata(data)
+      console.log("get data");
+    }
+  }
+
+  // Calculate total price for each order
+  const calculateTotalPrice = (order) => {
+    const product = getproductdata.find((product) => product.productName === order.productName);
+    if (product) {
+      return order.productQty * product.productPrice;
+    }
+    return 0;
+  };
+
+  useEffect(() => {
+    !user && navigate("/login", { replace: true });
+    getdata();
+    getProduct();
+  }, [search])
 
   return (
     <>
@@ -25,9 +99,9 @@ export const SupplierOrderList = () => {
       } */}
       <div className='mt-5'>
         <div className="container">
-        <div className='d-flex'>
-                <h2>Supplier Order List</h2>
-            </div>
+          <div className='d-flex'>
+            <h2>Supplier Order List</h2>
+          </div>
           {/* <div className='add_btn mt-2 mb-2'>
                 <NavLink to="/registerVehicle" className='btn btn-primary'>Add data</NavLink>
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={searchHandle}/>
@@ -49,84 +123,50 @@ export const SupplierOrderList = () => {
             </div>
           </div>
 
-          <div className="filter_div mt-5 d-flex justify-content-between flex-wrap">
-            <div className="filter_gender">
-              <div className="filter">
-                <h3>Filter By Fuel Type</h3>
-                <div className="gender d-flex justify-content-between">
-                  <Form.Check
-                    type={"radio"}
-                    label={`All`}
-                    name="fuel"
-                    value={"All"}
-                    defaultChecked
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Diesal`}
-                    name="fuel"
-                    value={"Diesal"}
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Petrol`}
-                    name="fuel"
-                    value={"Petrol"}
-                    onChange=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="filter_status">
-              <div className="status1">
-                <h3>Filter By Status</h3>
-                <div className="status_radio d-flex justify-content-between">
-                  <Form.Check
-                    type={"radio"}
-                    label={`All`}
-                    name="status"
-                    value={"All"}
-                    defaultChecked
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Active`}
-                    name="status"
-                    value={"Active"}
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`InActive`}
-                    name="status"
-                    value={"InActive"}
-                    onChange=""
-                  />
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
 
           <Card className='shadow'>
             <table class="table">
               <thead>
                 <tr className='tHead'>
-                  <th scope="col"><b>Order No</b></th>
+                  <th scope="col"><b>Order Id</b></th>
+                  <th scope="col"><b>Draft Id</b></th>
                   <th scope="col"><b>Site Name</b></th>
-                  <th scope="col"><b>Product Name</b></th>
+                  <th scope="col"><b>Supplier Name</b></th>
+                  <th scope="col"><b>Product</b></th>
                   <th scope="col"><b>Total Price</b></th>
-                  <th scope="col"><b>Status</b></th>
+                  <th scope="col"><b>Site Manager/ Staff Status</b></th>
                 </tr>
               </thead>
               <tbody>
-              <Button variant="primary" className="btn-info" onClick={placedorrejectorder} ><b>Placed or Reject Order</b></Button>
+                {/* <Button variant="primary" className="btn-info" onClick={placedorrejectorder} ><b>Placed or Reject Order</b></Button> */}
+
+                {
+                  getorderdata.map((element, id) => {
+                    const totalPrice = calculateTotalPrice(element);
+                    return (
+                      <>
+                        <tr onClick={() => {
+                          setModalData({});
+                          setModalData(element)
+                          setShowModal(true);
+                        }}>
+                          <th scope="row">{element.orderid}</th>
+                          <th scope="row">{element.draftID}</th>
+                          <td>{element.siteName}</td>
+                          <td>{element.supplier}</td>
+                          <td>{element.productName}</td>
+                          <td>{totalPrice}</td>
+                          <td>{element.orderstatus}</td>
+                          <td className='d-flex align-items-center'>
+                            {/* <NavLink to={`viewVehicle/${element._id}`}><button className='btn btn-success gap'>read</button></NavLink>
+                            <NavLink to={`editVehicle/${element._id}`}><button className='btn btn-primary gap'>update</button></NavLink>
+                            <button className='btn btn-danger' onClick={() => deletevehicle(element._id)}>Delete</button> */}
+                          </td>
+                        </tr>
+                      </>
+                    )
+                  })
+                }
 
               </tbody>
             </table>
@@ -136,25 +176,22 @@ export const SupplierOrderList = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
+          <Modal.Title>{modalData.siteName}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {/* <center><img src={`vehicleuploads/${modalData.vehicleImg}`} className="image" /></center>
-          <h3>{modalData.registerNo}</h3>
-              <p><strong>Vehicle Type :</strong> {modalData.vehicleType}</p>
-              <p><strong>Brand :</strong> {modalData.brand}</p>
-              <p><strong>Model :</strong> {modalData.model}</p>
-              <p><strong>Fuel Type :</strong> {modalData.fuelType}</p>
-              <p><strong>Vehicle Color :</strong> {modalData.vehicleColor}</p>
-              <p><strong>Insurance Expired Date :</strong>{new Date(modalData.InsuranceExpiredDate).toLocaleDateString()}</p>
-              <p><strong>Licence Expired Date :</strong>{new Date(modalData.LicenceExpiredDate).toLocaleDateString()}</p>
-              <p><strong>Vehicle Status :</strong>{modalData.vehicleStatus}</p> */}
+          <h3>{modalData.siteName}</h3>
+          <p><strong>Placed Date :</strong> {modalData.placedDate}</p>
+          <p><strong>Required Date :</strong> {modalData.requiredDate}</p>
+          <p><strong>Supplier :</strong>{modalData.supplier}</p>
+          <p><strong>Product Name :</strong>{modalData.productName} </p>
+          <p><strong>Total Price :</strong>{calculateTotalPrice(modalData)}</p>
+          <p><strong>Draft Status :</strong>{modalData.productName} </p>
         </Modal.Body>
 
         <Modal.Footer>
-        <NavLink to="" className="btn btn-warning">Update</NavLink>
-        <button className="btn btn-danger" onClick="">Delete</button>
+          <NavLink to={`placedrejectorder/${modalData._id}`} className="btn btn-warning">Approve Order</NavLink>
+          {/* <button className="btn btn-danger" onClick={() => deleteorder(modalData._id)}>Delete</button> */}
         </Modal.Footer>
       </Modal>
     </>

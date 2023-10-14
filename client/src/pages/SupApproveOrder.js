@@ -9,21 +9,22 @@ import Modal from 'react-bootstrap/Modal';
 import AuthContext from "../context/AuthContext";
 import ToastContext from "../context/ToastContext";
 
-export const SupplierProductList = () => {
 
+export const SupApproveOrder = () => {
   const { user } = useContext(AuthContext);
   const { toast } = useContext(ToastContext);
 
+  const [getsuporderdata, setsuporderdata] = useState([]);
 
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const navigate = useNavigate();
-  const [getsupproductdata, setsupProductdata] = useState([]);
+
 
   const getdata = async (e) => {
 
-    const res = await fetch(`/api/getProduct?search=${search}`, {
+    const res = await fetch(`/api/getSupOrderdata`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -39,15 +40,41 @@ export const SupplierProductList = () => {
       console.log("error ");
 
     } else {
-      setsupProductdata(data)
+      setsuporderdata(data)
       console.log("get data");
+    }
+  }
+
+  const deleteorder = async (id) => {
+    if (window.confirm("Are you sure want to delete this vehicle details ? ")) {
+      const res2 = await fetch(`/api/deleteordersup/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        }
+      });
+
+      const deletedata = await res2.json();
+      console.log(deletedata);
+
+      if (res2.status === 422 || !deletedata) {
+        toast.error(deletedata.error);
+        console.log("error");
+      } else {
+        toast.success(`One Draft is deleted`)
+        //setShow(true);
+        console.log("user deleted");
+        getdata();
+      }
     }
   }
 
   useEffect(() => {
     !user && navigate("/login", { replace: true });
     getdata();
-  }, [search])
+  }, [])
 
   return (
     <>
@@ -59,7 +86,7 @@ export const SupplierProductList = () => {
       <div className='mt-5'>
         <div className="container">
           <div className='d-flex'>
-            <h2>Supplier Product List</h2>
+            <h2>Order List</h2>
           </div>
           {/* <div className='add_btn mt-2 mb-2'>
                 <NavLink to="/registerVehicle" className='btn btn-primary'>Add data</NavLink>
@@ -75,31 +102,35 @@ export const SupplierProductList = () => {
                   className="me-2"
                   aria-label="Search"
                   //onChange={searchHandle}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange=""
                 />
                 <Button variant="success" className='search_btn btn-info'>Search</Button>
               </Form>
             </div>
-
+            <div className="add_btn ">
+              {/* <Button variant="primary" className="btn-info" onClick={adddraft} ><b>+ New Draft Order</b></Button> */}
+            </div>
           </div>
-
 
 
           <Card className='shadow'>
             <table class="table">
               <thead>
                 <tr className='tHead'>
-                  <th scope="col"><b>Product ID</b></th>
-                  <th scope="col"><b>Supplier Name</b></th>
+                  <th scope="col"><b>Draft ID</b></th>
+                  <th scope="col"><b>Order ID</b></th>
+                  <th scope="col"><b>Delivery Date</b></th>
+                  <th scope="col"><b>Required Date</b></th>
                   <th scope="col"><b>Product Name</b></th>
-                  <th scope="col"><b>Product Price</b></th>
-                  <th scope="col"><b>Product Description</b></th>
+                  <th scope="col"><b>Product Qty</b></th>
+                  <th scope="col"><b>Supplier Status</b></th>
                 </tr>
               </thead>
               <tbody>
+                {/* <th>Bhanuka</th> */}
 
                 {
-                  getsupproductdata.map((element, id) => {
+                  getsuporderdata.map((element, id) => {
                     return (
                       <>
                         <tr onClick={() => {
@@ -107,11 +138,13 @@ export const SupplierProductList = () => {
                           setModalData(element)
                           setShowModal(true);
                         }}>
-                          <th scope="row">{element.supproductid}</th>
-                          <td>{element.supplierName}</td>
+                          <th scope="row">{element.draftID}</th>
+                          <th scope="row">{element.orderid}</th>
+                          <td>{element.deliveryDate}</td>
+                          <td>{element.requiredDate}</td>
                           <td>{element.productName}</td>
-                          <td>{element.productPrice}</td>
-                          <td>{element.productDescription}</td>
+                          <td>{element.productQty}</td>
+                          <td>{element.supstatus}</td>
                           <td className='d-flex align-items-center'>
                             {/* <NavLink to={`viewVehicle/${element._id}`}><button className='btn btn-success gap'>read</button></NavLink>
                             <NavLink to={`editVehicle/${element._id}`}><button className='btn btn-primary gap'>update</button></NavLink>
@@ -130,21 +163,23 @@ export const SupplierProductList = () => {
       </div>
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-      <Modal.Header closeButton>
-          <Modal.Title>{modalData.supproductid}</Modal.Title>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalData._id}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <h3>{modalData.supproductid}</h3>
-          <p><strong>Product Name :</strong> {modalData.productName}</p>
-          <p><strong>Product Price :</strong> {modalData.productPrice}</p>
-          <p><strong>Supplier :</strong>{modalData.productDescription}</p>
+
+          <h3>{modalData.supplier}</h3>
+          <p><strong>Placed Date :</strong> {modalData.placedDate}</p>
+          <p><strong>Required Date :</strong> {modalData.requiredDate}</p>
+          <p><strong>Supplier :</strong>{modalData.supplier}</p>
+          <p><strong>Draft Status :</strong>{modalData.draftStatus} </p>
         </Modal.Body>
 
-        {/* <Modal.Footer>
-          <NavLink to={`updatematerial/${modalData._id}`} className="btn btn-warning">Update</NavLink>
-          <button className="btn btn-danger" onClick={() => deleteproduct(modalData._id)}>Delete</button>
-        </Modal.Footer> */}
+        <Modal.Footer>
+          {/* <NavLink to="" className="btn btn-warning">Update</NavLink> */}
+          <button className="btn btn-danger" onClick={() => deleteorder(modalData._id)}>Delete</button>
+        </Modal.Footer>
       </Modal>
     </>
   )

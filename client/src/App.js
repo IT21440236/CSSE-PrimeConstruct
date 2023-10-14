@@ -65,6 +65,8 @@ import { AddReceipt } from './pages/AddReceipt';
 import { InvoiceList } from './pages/InvoiceList';
 import { AddInvoice } from './pages/AddInvoice';
 import { InquiryManager } from './pages/InquiryManager';
+import { SupApproveOrder } from "pages/SupApproveOrder";
+import { SupplierAcceptOrderList } from "pages/SupplierAcceptOrderList";
 
 const App = () => {
   return (
@@ -124,13 +126,15 @@ const App = () => {
                 <Route path='/orderlist' exact element={<OrderList />} />
                 <Route path='/supplierproductlist' exact element={<SupplierProductList />} />
                 <Route path='/inquirymanager' exact element={<InquiryManager />} />
+                <Route path='/supplierapproveorderlist' exact element={<SupplierAcceptOrderList />} />
 
                 {/* Supplier UI */}
                 <Route path='/suppliersideproductlist' exact element={<SupplierSideProductList />} />
                 <Route path='/supplierorderlist' exact element={<SupplierOrderList />} />
                 <Route path='/addmaterial' exact element={<AddMaterials />} />
                 <Route path='/suppliersideproductlist/updatematerial/:id' exact element={<UpdateMaterials />} />
-                <Route path='/placedrejectorder' exact element={<PlacedRejectOrder />} />
+                <Route path='/supplierorderlist/placedrejectorder/:id' exact element={<PlacedRejectOrder />} />
+                <Route path='/supapproveorder' exact element={<SupApproveOrder />} />
 
                 {/* Staff UI */}
                 <Route path='/orderlistviewstaff' exact element={<OrderListViewStaff />} />
