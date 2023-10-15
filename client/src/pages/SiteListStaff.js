@@ -1,25 +1,21 @@
-import { useState, useEffect, useContext } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom'
-//import Alert from 'react-bootstrap/Alert';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
-import Card from 'react-bootstrap/Card';
-import Modal from 'react-bootstrap/Modal';
+import { useState, useEffect, useContext } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 
 export const SiteListStaff = () => {
-    const [showModal,setShowModal] = useState(false);
-    const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
-    const addsite = () => {
-      navigate("/addsite")
-    }
+  const addsite = () => {
+    navigate("/addsite");
+  };
 
-    const updatesite = () => {
-      navigate("/updatestaff")
-    }
-
-    
+  const updatesite = () => {
+    navigate("/updatestaff");
+  };
 
   return (
     <>
@@ -28,11 +24,11 @@ export const SiteListStaff = () => {
           Vehicle Details Deleted Succesfully
         </Alert> : ""
       } */}
-      <div className='mt-5'>
+      <div className="mt-5">
         <div className="container">
-        <div className='d-flex'>
-                <h2>Site List</h2>
-            </div>
+          <div className="d-flex">
+            <h2>Site List</h2>
+          </div>
           {/* <div className='add_btn mt-2 mb-2'>
                 <NavLink to="/registerVehicle" className='btn btn-primary'>Add data</NavLink>
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={searchHandle}/>
@@ -49,92 +45,50 @@ export const SiteListStaff = () => {
                   //onChange={searchHandle}
                   onChange=""
                 />
-                <Button variant="success" className='search_btn btn-info'>Search</Button>
+                <Button variant="success" className="search_btn btn-info">
+                  Search
+                </Button>
               </Form>
             </div>
             <div className="add_btn ">
-              <Button variant="primary" className="btn-info" onClick={addsite} ><b>+ Create Site</b></Button>
+              <Button variant="primary" className="btn-info" onClick={addsite}>
+                <b>+ Create Site</b>
+              </Button>
             </div>
           </div>
 
-          <div className="filter_div mt-5 d-flex justify-content-between flex-wrap">
-            <div className="filter_gender">
-              <div className="filter">
-                <h3>Filter By Fuel Type</h3>
-                <div className="gender d-flex justify-content-between">
-                  <Form.Check
-                    type={"radio"}
-                    label={`All`}
-                    name="fuel"
-                    value={"All"}
-                    defaultChecked
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Diesal`}
-                    name="fuel"
-                    value={"Diesal"}
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Petrol`}
-                    name="fuel"
-                    value={"Petrol"}
-                    onChange=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="filter_status">
-              <div className="status1">
-                <h3>Filter By Status</h3>
-                <div className="status_radio d-flex justify-content-between">
-                  <Form.Check
-                    type={"radio"}
-                    label={`All`}
-                    name="status"
-                    value={"All"}
-                    defaultChecked
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Active`}
-                    name="status"
-                    value={"Active"}
-                    onChange=""
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`InActive`}
-                    name="status"
-                    value={"InActive"}
-                    onChange=""
-                  />
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-
-          <Card className='shadow'>
+          <Card className="shadow">
             <table class="table">
               <thead>
-                <tr className='tHead'>
-                  <th scope="col"><b>Site Id</b></th>
-                  <th scope="col"><b>Site Name</b></th>
-                  <th scope="col"><b>Site Address</b></th>
-                  <th scope="col"><b>Contact No</b></th>
-                  <th scope="col"><b>Budget</b></th>
-                  <th scope="col"><b>Site Manager</b></th>
+                <tr className="tHead">
+                  <th scope="col">
+                    <b>Site Id</b>
+                  </th>
+                  <th scope="col">
+                    <b>Site Name</b>
+                  </th>
+                  <th scope="col">
+                    <b>Site Address</b>
+                  </th>
+                  <th scope="col">
+                    <b>Contact No</b>
+                  </th>
+                  <th scope="col">
+                    <b>Budget</b>
+                  </th>
+                  <th scope="col">
+                    <b>Site Manager</b>
+                  </th>
                 </tr>
               </thead>
               <tbody>
-              <Button variant="primary" className="btn-info" onClick={updatesite} ><b>Update Site Details</b></Button>
+                {/* <Button
+                  variant="primary"
+                  className="btn-info"
+                  onClick={updatesite}
+                >
+                  <b>Update Site Details</b>
+                </Button> */}
               </tbody>
             </table>
           </Card>
@@ -160,10 +114,14 @@ export const SiteListStaff = () => {
         </Modal.Body>
 
         <Modal.Footer>
-        <NavLink to="" className="btn btn-warning">Update</NavLink>
-        <button className="btn btn-danger" onClick="">Delete</button>
+          <NavLink to="" className="btn btn-warning">
+            Update
+          </NavLink>
+          <button className="btn btn-danger" onClick="">
+            Delete
+          </button>
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};

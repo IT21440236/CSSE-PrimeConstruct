@@ -59,20 +59,8 @@ const Header = () => {
           <span className="text-white" style={{ paddingRight: "25px" }}>
             {user.name}
           </span>
-          {/* YERAN */}
-          {user.role === "Site Manager" && (
-            <img
-              src={
-                "https://media.licdn.com/dms/image/D5603AQFmkMSgJ69a7g/profile-displayphoto-shrink_400_400/0/1693218056068?e=1702512000&v=beta&t=LhE6xpOKeityF5EKrfFE0x1k5dzz3VPkSJivgNYiwKw"
-              }
-              alt={user.name}
-              className="rounded-circle mr-2"
-              width="40"
-              height="40"
-            />
-          )}
           {/* BHANUKA */}
-          {user.role === "Supplier" && (
+          {user.role === "Site Manager" && (
             <img
               src={
                 "https://media.licdn.com/dms/image/D5603AQEERFT0Zy0nWA/profile-displayphoto-shrink_400_400/0/1687323514148?e=1702512000&v=beta&t=U0C30TuHRNWO3ghlN1Wu1BRa4eIOW7scANjqyd0gYqM"
@@ -84,10 +72,22 @@ const Header = () => {
             />
           )}
           {/* YASITHA */}
+          {user.role === "Supplier" && (
+            <img
+              src={
+                "https://media.licdn.com/dms/image/D5603AQEERFT0Zy0nWA/profile-displayphoto-shrink_400_400/0/1687323514148?e=1702512000&v=beta&t=U0C30TuHRNWO3ghlN1Wu1BRa4eIOW7scANjqyd0gYqM"
+              }
+              alt={user.name}
+              className="rounded-circle mr-2"
+              width="40"
+              height="40"
+            />
+          )}
+          {/* YERAN */}
           {user.role === "Staff" && (
             <img
               src={
-                "https://media.licdn.com/dms/image/C4E03AQFRJ6istEexFg/profile-displayphoto-shrink_100_100/0/1624459091173?e=1689206400&v=beta&t=qz1g4OvzvCo1fOTGZFzfWhh7q2fvfvRpyWzaRm6L4NU"
+                "https://media.licdn.com/dms/image/D5603AQFJFaRLL56Jbg/profile-displayphoto-shrink_400_400/0/1697162247953?e=1703116800&v=beta&t=Pty5sXjC7U6wHcQR1MUYBsnvxW3ZSbAyEBigfli3Wr4"
               }
               alt={user.name}
               className="rounded-circle mr-2"

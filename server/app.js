@@ -20,12 +20,12 @@ app.use(morgan("tiny")); //Morgan logs useful information about HTTP requests an
 
 app.use(require("cors")()); //used in Authorization
 
-const draftrouter = require("./routes/draftorder")
-const orderrouter = require("./routes/managerorder")
-const inquiryrouter = require("./routes/inquiry")
-const supproductrouter = require("./routes/supProduct")
+const draftrouter = require("./routes/draftorder");
+const orderrouter = require("./routes/managerorder");
+const inquiryrouter = require("./routes/inquiry");
+const supproductrouter = require("./routes/supProduct");
 
-
+const siteRouter = require("./routes/site"); // Import the site router
 
 //routes
 app.use("/api", require("./routes/auth"));
@@ -45,29 +45,14 @@ const cors = require("cors");
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/api", require("./routes/deliveries"));
-app.use("/api", require("./routes/schedules"));
-app.use("/api", require("./routes/deliveryreport"));
-
-//Pasindu***************************************************************************
-
-//Yasitha***************************************************************************
-
-//Routes
-app.use("/api", require("./routes/auth"));
-app.use("/api", require("./routes/category"));
-app.use("/api", require("./routes/stock"));
-app.use("/api", require("./routes/profit"));
-app.use("/api", require("./routes/stockreport"));
-
-//Yasitha***************************************************************************
-
 // Site Manager
 app.use("/api/", draftrouter);
 app.use("/api/", orderrouter);
 app.use("/api/", inquiryrouter);
-
 app.use("/api/", supproductrouter);
+
+//Staff
+app.use("/api/", siteRouter);
 
 //server configurations.
 const PORT = process.env.PORT || 8000; //3000 port we will use  for frontend
