@@ -40,6 +40,7 @@ import { AddInvoice } from "./pages/AddInvoice";
 import { InquiryManager } from "./pages/InquiryManager";
 import { EditSite } from "pages/EditSite";
 import { AllInvoices } from "pages/AllInvoices";
+import { AllReceipts } from "pages/AllReceipts";
 
 const App = () => {
   return (
@@ -129,8 +130,8 @@ const App = () => {
                   exact
                   element={<ApproveOrderStaff />}
                 />
-                <Route path="/reciptlist" exact element={<ReceiptList />} />
-                <Route path="/addrecipt" exact element={<AddReceipt />} />
+                <Route path="/allreceipts" exact element={<AllReceipts />} />
+                <Route path="/addreceipt" exact element={<AddReceipt />} />
                 <Route path="/allinvoices" exact element={<AllInvoices />} />
                 <Route path="/addinvoice" exact element={<AddInvoice />} />
               </Switch>

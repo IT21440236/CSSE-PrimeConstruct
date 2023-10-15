@@ -27,7 +27,7 @@ const supproductrouter = require("./routes/supProduct");
 
 const siteRouter = require("./routes/site"); // Import the site router
 const invoiceRouter = require("./routes/invoice"); // Import the invoice router
-
+const receiptRouter = require("./routes/reciept"); //Import the reciept router
 //routes
 app.use("/api", require("./routes/auth"));
 app.use("/api/", require("./routes/contact"));
@@ -55,6 +55,7 @@ app.use("/api/", supproductrouter);
 //Staff
 app.use("/api/", siteRouter);
 app.use("/api", invoiceRouter);
+app.use("/api/", receiptRouter);
 
 //server configurations.
 const PORT = process.env.PORT || 8000; //3000 port we will use  for frontend
