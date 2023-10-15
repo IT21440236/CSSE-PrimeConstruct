@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import AuthContext from "../context/AuthContext";
 import ToastContext from "../context/ToastContext";
+import moment from "moment"
 
 
 export const DraftOrderList = () => {
@@ -141,8 +142,8 @@ export const DraftOrderList = () => {
                           setShowModal(true);
                           }}>
                           <th scope="row">{element.draftid}</th>
-                          <td>{element.placedDate}</td>
-                          <td>{element.requiredDate}</td>
+                          <td>{moment(element.placedDate).format('MMMM Do YYYY')}</td>
+                          <td>{moment(element.requiredDate).format('MMMM Do YYYY')}</td>
                           <td>{element.supplier}</td>
                           <td>{element.draftStatus}</td>
                           <td className='d-flex align-items-center'>

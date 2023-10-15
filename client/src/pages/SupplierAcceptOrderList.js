@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import AuthContext from "../context/AuthContext";
 import ToastContext from "../context/ToastContext";
+import moment from "moment"
 
 
 export const SupplierAcceptOrderList = () => {
@@ -61,7 +62,7 @@ export const SupplierAcceptOrderList = () => {
       <div className='mt-5'>
         <div className="container">
           <div className='d-flex'>
-            <h2>Draft Order List</h2>
+            <h2>Supplier Accept/Reject Order List</h2>
           </div>
           {/* <div className='add_btn mt-2 mb-2'>
                 <NavLink to="/registerVehicle" className='btn btn-primary'>Add data</NavLink>
@@ -115,8 +116,8 @@ export const SupplierAcceptOrderList = () => {
                         }}>
                           <th scope="row">{element.draftID}</th>
                           <th scope="row">{element.orderid}</th>
-                          <td>{element.deliveryDate}</td>
-                          <td>{element.requiredDate}</td>
+                          <td>{moment(element.deliveryDate).format('MMMM Do YYYY')}</td>
+                          <td>{moment(element.requiredDate).format('MMMM Do YYYY')}</td>
                           <td>{element.productName}</td>
                           <td>{element.productQty}</td>
                           <td>{element.supstatus}</td>

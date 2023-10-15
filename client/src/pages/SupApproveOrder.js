@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import AuthContext from "../context/AuthContext";
 import ToastContext from "../context/ToastContext";
+import moment from "moment"
 
 
 export const SupApproveOrder = () => {
@@ -140,8 +141,8 @@ export const SupApproveOrder = () => {
                         }}>
                           <th scope="row">{element.draftID}</th>
                           <th scope="row">{element.orderid}</th>
-                          <td>{element.deliveryDate}</td>
-                          <td>{element.requiredDate}</td>
+                          <td>{moment(element.deliveryDate).format('MMMM Do YYYY')}</td>
+                          <td>{moment(element.requiredDate).format('MMMM Do YYYY')}</td>
                           <td>{element.productName}</td>
                           <td>{element.productQty}</td>
                           <td>{element.supstatus}</td>
@@ -164,16 +165,16 @@ export const SupApproveOrder = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{modalData._id}</Modal.Title>
+          <Modal.Title>{modalData.orderid}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
 
-          <h3>{modalData.supplier}</h3>
-          <p><strong>Placed Date :</strong> {modalData.placedDate}</p>
-          <p><strong>Required Date :</strong> {modalData.requiredDate}</p>
+          <h3>{modalData.orderid}</h3>
+          <p><strong>Placed Date :</strong> {moment(modalData.placedDate).format('MMMM Do YYYY')}</p>
+          <p><strong>Delivery Date :</strong> {moment(modalData.deliveryDate).format('MMMM Do YYYY')}</p>
           <p><strong>Supplier :</strong>{modalData.supplier}</p>
-          <p><strong>Draft Status :</strong>{modalData.draftStatus} </p>
+          <p><strong>Supplier Status :</strong>{modalData.supstatus} </p>
         </Modal.Body>
 
         <Modal.Footer>

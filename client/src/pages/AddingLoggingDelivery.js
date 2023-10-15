@@ -1,27 +1,27 @@
-import React, { useState, useContext,useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card';
 import ToastContext from "../context/ToastContext";
 
 
-export const AddProduct = () => {
+export const AddingLoggingDelivery = () => {
 
     const { toast } = useContext(ToastContext);
 
     const [inpval, setINP] = useState({
         draftID: "",
+        orderid: "",
         siteName: "",
         supplier: "",
-        placedDate: "",
-        requiredDate: "",
+        deliveryDate: "",
         productName: "",
         productQty: "",
-        orderstatus: ""
+        comment: ""
     })
 
     //const [show, setShow] = useState(false);
-    const [getdradata, setDraftdata] = useState([]);
+    const [getsupdata, setApprovedata] = useState([]);
 
     const setdata = (e) => {
         console.log(e.target.value);
@@ -37,14 +37,14 @@ export const AddProduct = () => {
     const addinpdata = async (e) => {
         e.preventDefault();
 
-        const { draftID, siteName, supplier, placedDate, requiredDate, productName, productQty, orderstatus } = inpval;
+        const { draftID,orderid, siteName, supplier, deliveryDate, productName, productQty, comment } = inpval;
 
-        if (!draftID || !siteName || !supplier || !placedDate || !requiredDate || !productName || !productQty || !orderstatus) {
+        if (!draftID || !orderid || !siteName || !supplier || !deliveryDate || !productName || !productQty || !comment) {
             toast.error("Please enter all required fields")
             return false
         }
 
-        const res = await fetch("/api/addManagerOrder", {
+        const res = await fetch("/api/addManagerdelivery", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const AddProduct = () => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
-                draftID, siteName, supplier, placedDate, requiredDate, productName, productQty, orderstatus
+                draftID,orderid, siteName, supplier, deliveryDate, productName, productQty, comment
             })
         });
 
@@ -71,9 +71,9 @@ export const AddProduct = () => {
         }
     }
 
-    const getdraftdata = async (e) => {
+    const getsuporderdata = async (e) => {
 
-        const res = await fetch("/api/getdraftdata", {
+        const res = await fetch("/api/getSupOrderdata", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -88,13 +88,13 @@ export const AddProduct = () => {
         if (res.status === 422 || !data) {
             console.log("error ");
         } else {
-            setDraftdata(data)
+            setApprovedata(data)
             console.log("get data");
         }
     }
 
     useEffect(() => {
-        getdraftdata()
+        getsuporderdata()
     }, [])
 
 
@@ -102,18 +102,28 @@ export const AddProduct = () => {
     return (
         <div className="container">
             <div className='d-flex'>
-                <h2>Add Product</h2>
+                <h2>Add Logging Delivery</h2>
             </div>
             <Card className='shadow card'>
                 <Form className='mt-4'>
                     <div className="row">
 
                         <Form.Group className="mb-3">
-                            <Form.Label>Draft Order</Form.Label>
+                            <Form.Label>Draft ID</Form.Label>
                             <select value={inpval.draftID} onChange={setdata} name="draftID" className="form-select">
                                 <option>Select draft order</option>
                                 {
-                                    getdradata.map((opts, i) => <option>{opts.draftid}</option>)
+                                    getsupdata.map((opts, i) => <option>{opts.draftID}</option>)
+                                }
+                            </select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Order ID</Form.Label>
+                            <select value={inpval.orderid} onChange={setdata} name="orderid" className="form-select">
+                                <option>Select order id</option>
+                                {
+                                    getsupdata.map((opts, i) => <option>{opts.orderid}</option>)
                                 }
                             </select>
                         </Form.Group>
@@ -130,37 +140,20 @@ export const AddProduct = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicSupplierName">
                             <Form.Label>Supplier Name</Form.Label>
-                            {/* <Form.Control
+                            <Form.Control
                                 type="text"
                                 name="supplier"
                                 value={inpval.supplier}
                                 onChange={setdata}
-                            /> */}
-                            <select value={inpval.supplier} onChange={setdata} name="supplier" className="form-select">
-                                <option>Select draft order</option>
-                                {
-                                    getdradata.map((opts, i) => <option>{opts.supplier}</option>)
-                                }
-                            </select>
-
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPlacedDate">
-                            <Form.Label>Placed Date</Form.Label>
-                            <Form.Control
-                                type="date"
-                                name="placedDate"
-                                value={inpval.placedDate}
-                                onChange={setdata}
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicRequiredDate">
-                            <Form.Label>Required Date</Form.Label>
+                        <Form.Group className="mb-3" controlId="formBasicPlacedDate">
+                            <Form.Label>Delivery Date</Form.Label>
                             <Form.Control
                                 type="date"
-                                name="requiredDate"
-                                value={inpval.requiredDate}
+                                name="deliveryDate"
+                                value={inpval.deliveryDate}
                                 onChange={setdata}
                             />
                         </Form.Group>
@@ -193,18 +186,13 @@ export const AddProduct = () => {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicOrderStatus">
-                            <Form.Label>Order Status</Form.Label>
-                            <select
-                                name="orderstatus"
-                                value={inpval.orderstatus}
+                            <Form.Label>Comment</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="comment"
+                                value={inpval.comment}
                                 onChange={setdata}
-                                className="form-select"
-                            >
-                                <option value="">Select Order Status</option>
-                                <option value="Reject">Reject</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Accept">Accept</option>
-                            </select>
+                            />
                         </Form.Group>
 
 

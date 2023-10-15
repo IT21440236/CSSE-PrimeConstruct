@@ -67,6 +67,9 @@ import { AddInvoice } from './pages/AddInvoice';
 import { InquiryManager } from './pages/InquiryManager';
 import { SupApproveOrder } from "pages/SupApproveOrder";
 import { SupplierAcceptOrderList } from "pages/SupplierAcceptOrderList";
+import { LoggingDeliveryList } from "pages/LoggingDeliveryList";
+import { AddingLoggingDelivery } from "pages/AddingLoggingDelivery";
+import { UpdateLoggingDelivery } from "pages/UpdateLoggingDelivery";
 
 const App = () => {
   return (
@@ -127,6 +130,9 @@ const App = () => {
                 <Route path='/supplierproductlist' exact element={<SupplierProductList />} />
                 <Route path='/inquirymanager' exact element={<InquiryManager />} />
                 <Route path='/supplierapproveorderlist' exact element={<SupplierAcceptOrderList />} />
+                <Route path='/logginglist' exact element={<LoggingDeliveryList />} />
+                <Route path='/addlogging' exact element={<AddingLoggingDelivery />} />
+                <Route path='/logginglist/updatelogging/:id' exact element={<UpdateLoggingDelivery />} />
 
                 {/* Supplier UI */}
                 <Route path='/suppliersideproductlist' exact element={<SupplierSideProductList />} />

@@ -23,6 +23,10 @@ import {
   faUserTie,
   faFolder,
   faClipboardList,
+  faQuestionCircle,
+  faClipboard,
+  faList,
+  faCheck
 } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ title = "Prime Construct" }) => {
@@ -148,7 +152,7 @@ const Navbar = ({ title = "Prime Construct" }) => {
               <li className="nav-item">
                 <Link to="/inquirymanager" role="button" className="nav-link">
                   <FontAwesomeIcon
-                    icon={faFileAlt}
+                    icon={faQuestionCircle}
                     style={{ marginRight: "10px", color: "white" }}
                   />
                   Inquiry
@@ -156,9 +160,19 @@ const Navbar = ({ title = "Prime Construct" }) => {
               </li>
 
               <li className="nav-item">
+                <Link to="/logginglist" role="button" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faClipboard}
+                    style={{ marginRight: "10px", color: "white" }}
+                  />
+                  Logging Delivery
+                </Link>
+              </li>
+
+              <li className="nav-item">
                 <Link to="/supplierproductlist" role="button" className="nav-link">
                   <FontAwesomeIcon
-                    icon={faFileAlt}
+                    icon={faList}
                     style={{ marginRight: "10px", color: "white" }}
                   />
                   Supplier Product List
@@ -168,7 +182,7 @@ const Navbar = ({ title = "Prime Construct" }) => {
               <li className="nav-item">
                 <Link to="/supplierapproveorderlist" role="button" className="nav-link">
                   <FontAwesomeIcon
-                    icon={faFileAlt}
+                    icon={faCheck}
                     style={{ marginRight: "10px", color: "white" }}
                   />
                   Supplier Accept Order List
@@ -249,7 +263,7 @@ const Navbar = ({ title = "Prime Construct" }) => {
                 <li className="nav-item">
                   <Link to="/supapproveorder" role="button" className="nav-link">
                     <FontAwesomeIcon
-                      icon={faCalendarAlt}
+                      icon={faClipboardList}
                       style={{ marginRight: "10px", color: "white" }}
                     />
                     Approve/Reject Order
@@ -269,7 +283,7 @@ const Navbar = ({ title = "Prime Construct" }) => {
                 <li className="nav-item">
                   <Link to="/supplierorderlist" role="button" className="nav-link">
                     <FontAwesomeIcon
-                      icon={faCalendarAlt}
+                      icon={faMoneyBillAlt}
                       style={{ marginRight: "10px", color: "white" }}
                     />
                     Supplier Order

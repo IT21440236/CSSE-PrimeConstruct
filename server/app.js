@@ -23,6 +23,7 @@ app.use(require("cors")()); //used in Authorization
 const draftrouter = require("./routes/draftorder")
 const orderrouter = require("./routes/managerorder")
 const inquiryrouter = require("./routes/inquiry")
+const loggingDeliveryrouter = require("./routes/loggingDelivery")
 const supproductrouter = require("./routes/supProduct")
 const suporderrouter = require("./routes/supOrderApproved")
 
@@ -67,6 +68,7 @@ app.use("/api", require("./routes/stockreport"));
 app.use("/api/", draftrouter);
 app.use("/api/", orderrouter);
 app.use("/api/", inquiryrouter);
+app.use("/api/", loggingDeliveryrouter);
 
 app.use("/api/", supproductrouter);
 app.use("/api/", suporderrouter);

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
+import moment from "moment"
 //import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -181,8 +182,8 @@ export const SupplierOrderList = () => {
 
         <Modal.Body>
           <h3>{modalData.siteName}</h3>
-          <p><strong>Placed Date :</strong> {modalData.placedDate}</p>
-          <p><strong>Required Date :</strong> {modalData.requiredDate}</p>
+          <p><strong>Placed Date :</strong> {moment(modalData.placedDate).format('MMMM Do YYYY')}</p>
+          <p><strong>Required Date :</strong> {moment(modalData.requiredDate).format('MMMM Do YYYY')}</p>
           <p><strong>Supplier :</strong>{modalData.supplier}</p>
           <p><strong>Product Name :</strong>{modalData.productName} </p>
           <p><strong>Total Price :</strong>{calculateTotalPrice(modalData)}</p>
