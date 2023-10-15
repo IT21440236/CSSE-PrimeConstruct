@@ -45,7 +45,7 @@ export const EditSite = () => {
         budget: "",
         siteManager: "",
       });
-      navigate("/index");
+      navigate("/allsites");
     } else {
       toast.error(result.error);
       console.log(result);
@@ -94,7 +94,90 @@ export const EditSite = () => {
           <h2>Edit Site</h2>
           <form onSubmit={handleSubmit}>
             {/* Site Name */}
-            {/* Implement the necessary form elements similar to the EditEmployee component */}
+            <div className="form-group">
+              <label htmlFor="sitenameInput" className="form-label mt-4">
+                Site Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="sitenameInput"
+                name="sitename"
+                value={siteDetails.sitename}
+                onChange={handleInputChange}
+                placeholder="Site Name"
+                required
+              />
+            </div>
+            {/* Site Address */}
+            <div className="form-group">
+              <label htmlFor="siteAddressInput" className="form-label mt-4">
+                Site Address
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="siteAddressInput"
+                name="siteAddress"
+                value={siteDetails.siteAddress}
+                onChange={handleInputChange}
+                placeholder="Site Address"
+                required
+              />
+            </div>
+            {/* Contact Number */}
+            <div className="form-group">
+              <label htmlFor="contactnoInput" className="form-label mt-4">
+                Contact Number
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="contactnoInput"
+                name="contactno"
+                value={siteDetails.contactno}
+                onChange={handleInputChange}
+                placeholder="Contact Number"
+                required
+              />
+            </div>
+            {/* Budget */}
+            <div className="form-group">
+              <label htmlFor="budgetInput" className="form-label mt-4">
+                Budget
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="budgetInput"
+                name="budget"
+                value={siteDetails.budget}
+                onChange={handleInputChange}
+                placeholder="Budget"
+                required
+              />
+            </div>
+            {/* Site Manager */}
+            <div className="form-group">
+              <label htmlFor="siteManagerInput" className="form-label mt-4">
+                Site Manager
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="siteManagerInput"
+                name="siteManager"
+                value={siteDetails.siteManager}
+                onChange={handleInputChange}
+                placeholder="Site Manager"
+                required
+              />
+            </div>
+            <input
+              type="submit"
+              value="Save Changes"
+              className="btn btn-info my-2"
+            />
           </form>
         </>
       )}

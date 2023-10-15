@@ -31,7 +31,7 @@ router.post("/site", auth, async (req, res) => {
 });
 
 // Fetch sites
-router.get("/mysites", auth, async (req, res) => {
+router.get("/allsites", auth, async (req, res) => {
   try {
     const sites = await Site.find();
 

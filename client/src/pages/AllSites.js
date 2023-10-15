@@ -17,7 +17,7 @@ export const AllSites = () => {
     setLoading(true);
     async function fetchData() {
       try {
-        const res = await fetch(`http://localhost:8000/api/mysites`, {
+        const res = await fetch(`http://localhost:8000/api/allsites`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -89,7 +89,7 @@ export const AllSites = () => {
       <div>
         <h1>Sites</h1>
         <div className="d-flex justify-content-between">
-          <a href="/mysites" className="btn btn-danger my-2">
+          <a href="/allsites" className="btn btn-danger my-2">
             Reload Site List
           </a>
           <div>
@@ -120,7 +120,7 @@ export const AllSites = () => {
               <button type="submit" className="btn btn-info mx-2 my-2">
                 Search
               </button>
-              <a href="/another-page">
+              <a href="/allsites">
                 <button type="button" className="btn btn-secondary mx-2 my-2">
                   Reset
                 </button>

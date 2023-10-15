@@ -32,7 +32,6 @@ import { UpdateMaterials } from "./pages/UpdateMaterials";
 import { PlacedRejectOrder } from "./pages/PlacedRejectOrder";
 import { OrderListViewStaff } from "./pages/OrderListViewStaff";
 import { ApproveOrderStaff } from "./pages/ApproveOrderStaff";
-import { SiteListStaff } from "./pages/SiteListStaff";
 import { AllSites } from "pages/AllSites";
 import { AddSite } from "./pages/AddSite";
 import { ReceiptList } from "./pages/ReceiptList";
@@ -40,6 +39,7 @@ import { AddReceipt } from "./pages/AddReceipt";
 import { InvoiceList } from "./pages/InvoiceList";
 import { AddInvoice } from "./pages/AddInvoice";
 import { InquiryManager } from "./pages/InquiryManager";
+import { EditSite } from "pages/EditSite";
 
 const App = () => {
   return (
@@ -116,12 +116,13 @@ const App = () => {
                   exact
                   element={<OrderListViewStaff />}
                 />
+                <Route path="/editsite/:id" element={<EditSite />} />
                 <Route
                   path="/orderlistviewstaff/approveorderstaff/:id"
                   exact
                   element={<ApproveOrderStaff />}
                 />
-                <Route path="/siteliststaff" exact element={<AllSites />} />
+                <Route path="/allsites" exact element={<AllSites />} />
                 <Route path="/addsite" exact element={<AddSite />} />
                 <Route
                   path="/updatestaff"
