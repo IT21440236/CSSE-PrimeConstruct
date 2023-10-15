@@ -28,18 +28,13 @@ const supproductrouter = require("./routes/supProduct");
 const siteRouter = require("./routes/site"); // Import the site router
 const invoiceRouter = require("./routes/invoice"); // Import the invoice router
 const receiptRouter = require("./routes/reciept"); //Import the reciept router
+
 //routes
 app.use("/api", require("./routes/auth"));
 app.use("/api/", require("./routes/contact"));
 app.use("/api/", require("./routes/employee"));
 app.use("/api/", require("./routes/salary"));
 app.use("/api/", require("./routes/attendance"));
-// app.use("/api/", require("./routes/report"));
-
-//if our token was valid then we will have the user in the request object.
-// app.get("/protected", auth, (req, res) => {s
-//     return res.status(200).json({ ...req.user._doc });
-// });
 
 //Pasindu***************************************************************************
 const cors = require("cors");
