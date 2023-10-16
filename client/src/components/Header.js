@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header
       className="d-flex justify-content-between align-items-center py-3 px-4"
-      style={{ background: "linear-gradient(to right, #214956 , #498459)" }}
+      style={{ background: "linear-gradient(to right, #00308F , #007FFF)" }}
     >
       {user && user.role === "Customer" ? (
         <Link

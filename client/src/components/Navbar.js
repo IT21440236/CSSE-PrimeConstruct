@@ -26,7 +26,10 @@ import {
   faQuestionCircle,
   faClipboard,
   faList,
-  faCheck
+  faCheck,
+  faHardHat,
+  faFileInvoice,
+  faReceipt
 } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ title = "Prime Construct" }) => {
@@ -360,9 +363,9 @@ const Navbar = ({ title = "Prime Construct" }) => {
                   </li>
 
                   <li className="nav-item">
-                    <Link to="/siteliststaff" role="button" className="nav-link">
+                    <Link to="/allsites" role="button" className="nav-link">
                       <FontAwesomeIcon
-                        icon={faCalendarAlt}
+                        icon={faHardHat}
                         style={{ marginRight: "10px", color: "white" }}
                       />
                       Site
@@ -370,9 +373,9 @@ const Navbar = ({ title = "Prime Construct" }) => {
                   </li>
 
                   <li className="nav-item">
-                    <Link to="/invoicelist" role="button" className="nav-link">
+                    <Link to="/allinvoices" role="button" className="nav-link">
                       <FontAwesomeIcon
-                        icon={faCalendarAlt}
+                        icon={faFileInvoice}
                         style={{ marginRight: "10px", color: "white" }}
                       />
                       Invoice
@@ -380,9 +383,9 @@ const Navbar = ({ title = "Prime Construct" }) => {
                   </li>
 
                   <li className="nav-item">
-                    <Link to="/reciptlist" role="button" className="nav-link">
+                    <Link to="/allreceipts" role="button" className="nav-link">
                       <FontAwesomeIcon
-                        icon={faCalendarAlt}
+                        icon={faReceipt}
                         style={{ marginRight: "10px", color: "white" }}
                       />
                       Receipt

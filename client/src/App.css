@@ -352,8 +352,10 @@ tbody tr:nth-child(odd) {
 
 body {
   /* background: linear-gradient(315deg, #20bf55 0%, #01baef 74%); */
-  background-color: #378b29;
-  background-image: linear-gradient(315deg, #378b29 0%, #74d680 74%);
+  /* background-color: #378b29;
+  background-image: linear-gradient(315deg, #378b29 0%, #74d680 74%); */
+  background-image: linear-gradient(315deg, #0074C8 0%, #01BAEF 74%);
+  background-color: #0074C8; /* Fallback color for browsers that don't support gradients */
 }
 /* Body content */
 

@@ -1,66 +1,13 @@
-// import React, { useState, useEffect } from 'react'
-// import { NavLink } from 'react-router-dom'
-// import Form from 'react-bootstrap/Form'
-// import Card from 'react-bootstrap/Card';
-
-// export const AddInvoice = () => {
-//     return (
-//         <div className="container">
-//             <div className='d-flex'>
-//                 <h2>New Invoice</h2>
-//             </div>
-//             <Card className='shadow card'>
-//                 <Form className='mt-4'>
-//                     <div className="row">
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Order No</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Bank</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Branch</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Amount Number</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Deposit Amountr</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Deposit Date</Form.Label>
-//                             <Form.Control type="date" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-                        
-
-//                     </div>
-
-//                     <button type="submit" onClick="" class="btn-style">Submit</button>
-//                 </Form>
-//             </Card>
-//         </div>
-//     )
-// }
-
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import ToastContext from "../context/ToastContext";
+import Spinner from "../components/Spinner";
 
-export const AddInvoice = () => {
+export const EditInvoice = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const { toast } = useContext(ToastContext);
-
   const [invoiceDetails, setInvoiceDetails] = useState({
     orderno: "",
     bank: "",
@@ -69,8 +16,7 @@ export const AddInvoice = () => {
     amount: "",
     depositdate: "",
   });
-
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -81,16 +27,17 @@ export const AddInvoice = () => {
     event.preventDefault();
 
     const res = await fetch(`http://localhost:8000/api/invoice`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(invoiceDetails),
+      body: JSON.stringify({ id, ...invoiceDetails }),
     });
     const result = await res.json();
     if (!result.error) {
-      toast.success(`Invoice [${invoiceDetails.orderno}] Added Successfully`);
+      console.log(result);
+      toast.success(`Updated [${invoiceDetails.orderno}] Successfully`);
 
       setInvoiceDetails({
         orderno: "",
@@ -100,27 +47,54 @@ export const AddInvoice = () => {
         amount: "",
         depositdate: "",
       });
+      navigate("/allinvoices");
     } else {
       toast.error(result.error);
+      console.log(result);
     }
   };
 
-  const handleClear = () => {
-    setInvoiceDetails({
-      orderno: "",
-      bank: "",
-      branch: "",
-      accountno: "",
-      amount: "",
-      depositdate: "",
-    });
-  };
+  useEffect(() => {
+    setLoading(true);
+    async function fetchInvoice() {
+      try {
+        const res = await fetch(`http://localhost:8000/api/invoice/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        });
+        const result = await res.json();
+        console.log(result);
+        if (!result.error) {
+          setInvoiceDetails({
+            orderno: result.orderno,
+            bank: result.bank,
+            branch: result.branch,
+            accountno: result.accountno,
+            amount: result.amount,
+            depositdate: result.depositdate,
+          });
+        } else {
+          toast.error(result.error);
+        }
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        toast.error("Failed to fetch invoice. Please try again later.");
+        setLoading(false);
+      }
+    }
+    fetchInvoice();
+  }, []);
 
   return (
     <>
-      <h2 className="text-center bg-darkgreen text-white p-2">Add Invoice</h2>
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-6">
+      {loading ? (
+        <Spinner splash="Loading Invoice..." />
+      ) : (
+        <>
+          <h2>Edit Invoice</h2>
           <form onSubmit={handleSubmit}>
             {/* Order Number */}
             <div className="form-group">
@@ -218,23 +192,14 @@ export const AddInvoice = () => {
               />
             </div>
             {/* Add more form fields for other attributes */}
-            <div className="text-center">
-              <input
-                type="submit"
-                value="Add Invoice"
-                className="btn btn-info my-2"
-              />
-              <button
-                type="button"
-                onClick={handleClear}
-                className="btn btn-danger my-2 ml-2"
-              >
-                Clear
-              </button>
-            </div>
+            <input
+              type="submit"
+              value="Save Changes"
+              className="btn btn-info my-2"
+            />
           </form>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 };

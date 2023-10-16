@@ -59,12 +59,18 @@ import { PlacedRejectOrder } from './pages/PlacedRejectOrder';
 import { OrderListViewStaff } from './pages/OrderListViewStaff';
 import { ApproveOrderStaff } from './pages/ApproveOrderStaff';
 import { SiteListStaff } from './pages/SiteListStaff';
+import { AllSites } from "pages/AllSites";
 import { AddSite } from './pages/AddSite';
 import { ReceiptList } from './pages/ReceiptList';
 import { AddReceipt } from './pages/AddReceipt';
 import { InvoiceList } from './pages/InvoiceList';
 import { AddInvoice } from './pages/AddInvoice';
 import { InquiryManager } from './pages/InquiryManager';
+import { EditSite } from "pages/EditSite";
+import { AllInvoices } from "pages/AllInvoices";
+import { AllReceipts } from "pages/AllReceipts";
+
+
 import { SupApproveOrder } from "pages/SupApproveOrder";
 import { SupplierAcceptOrderList } from "pages/SupplierAcceptOrderList";
 import { LoggingDeliveryList } from "pages/LoggingDeliveryList";
@@ -143,7 +149,7 @@ const App = () => {
                 <Route path='/supapproveorder' exact element={<SupApproveOrder />} />
 
                 {/* Staff UI */}
-                <Route path='/orderlistviewstaff' exact element={<OrderListViewStaff />} />
+                {/* <Route path='/orderlistviewstaff' exact element={<OrderListViewStaff />} />
                 <Route path='/approveorderstaff' exact element={<ApproveOrderStaff />} />
                 <Route path='/siteliststaff' exact element={<SiteListStaff />} />
                 <Route path='/addsite' exact element={<AddSite />} />
@@ -151,7 +157,32 @@ const App = () => {
                 <Route path='/reciptlist' exact element={<ReceiptList />} />
                 <Route path='/addrecipt' exact element={<AddReceipt />} />
                 <Route path='/invoicelist' exact element={<InvoiceList />} />
-                <Route path='/addinvoice' exact element={<AddInvoice />} />
+                <Route path='/addinvoice' exact element={<AddInvoice />} /> */}
+
+                {/* Staff UI */}
+                <Route
+                  path="/orderlistviewstaff"
+                  exact
+                  element={<OrderListViewStaff />}
+                />
+                <Route path="/editsite/:id" element={<EditSite />} />
+                <Route
+                  path="/orderlistviewstaff/approveorderstaff/:id"
+                  exact
+                  element={<ApproveOrderStaff />}
+                />
+                <Route path="/allsites" exact element={<AllSites />} />
+                <Route path="/addsite" exact element={<AddSite />} />
+                <Route
+                  path="/updatestaff"
+                  exact
+                  element={<ApproveOrderStaff />}
+                />
+                <Route path="/allreceipts" exact element={<AllReceipts />} />
+                <Route path="/addreceipt" exact element={<AddReceipt />} />
+                <Route path="/allinvoices" exact element={<AllInvoices />} />
+                <Route path="/addinvoice" exact element={<AddInvoice />} />
+
 
 
 

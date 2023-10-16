@@ -1,62 +1,20 @@
-// import React, { useState, useEffect } from 'react'
-// import { NavLink } from 'react-router-dom'
-// import Form from 'react-bootstrap/Form'
-// import Card from 'react-bootstrap/Card';
-
-// export const AddReceipt = () => {
-//     return (
-//         <div className="container">
-//             <div className='d-flex'>
-//                 <h2>New Good Receipt</h2>
-//             </div>
-//             <Card className='shadow card'>
-//                 <Form className='mt-4'>
-//                     <div className="row">
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Order No</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Product Name</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Product Quantity</Form.Label>
-//                             <Form.Control type="text" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-//                             <Form.Label>Delivery Date</Form.Label>
-//                             <Form.Control type="date" value="" onChange="" name="driverName" />
-//                         </Form.Group>
-
-//                     </div>
-
-//                     <button type="submit" onClick="" class="btn-style">Submit</button>
-//                 </Form>
-//             </Card>
-//         </div>
-//     )
-// }
-
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import ToastContext from "../context/ToastContext";
+import Spinner from "../components/Spinner";
 
-export const AddReceipt = () => {
+export const EditReceipt = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const { toast } = useContext(ToastContext);
-
   const [receiptDetails, setReceiptDetails] = useState({
     orderno: "",
     productname: "",
     productQuantity: "",
     deliveryDate: "",
   });
-
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -67,16 +25,17 @@ export const AddReceipt = () => {
     event.preventDefault();
 
     const res = await fetch(`http://localhost:8000/api/receipt`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(receiptDetails),
+      body: JSON.stringify({ id, ...receiptDetails }),
     });
     const result = await res.json();
     if (!result.error) {
-      toast.success(`Receipt [${receiptDetails.orderno}] Added Successfully`);
+      console.log(result);
+      toast.success(`Updated [${receiptDetails.orderno}] Successfully`);
 
       setReceiptDetails({
         orderno: "",
@@ -84,25 +43,52 @@ export const AddReceipt = () => {
         productQuantity: "",
         deliveryDate: "",
       });
+      navigate("/allreceipts");
     } else {
       toast.error(result.error);
+      console.log(result);
     }
   };
 
-  const handleClear = () => {
-    setReceiptDetails({
-      orderno: "",
-      productname: "",
-      productQuantity: "",
-      deliveryDate: "",
-    });
-  };
+  useEffect(() => {
+    setLoading(true);
+    async function fetchReceipt() {
+      try {
+        const res = await fetch(`http://localhost:8000/api/receipt/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        });
+        const result = await res.json();
+        console.log(result);
+        if (!result.error) {
+          setReceiptDetails({
+            orderno: result.orderno,
+            productname: result.productname,
+            productQuantity: result.productQuantity,
+            deliveryDate: result.deliveryDate,
+          });
+        } else {
+          toast.error(result.error);
+        }
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        toast.error("Failed to fetch receipt. Please try again later.");
+        setLoading(false);
+      }
+    }
+    fetchReceipt();
+  }, []);
 
   return (
     <>
-      <h2 className="text-center bg-darkgreen text-white p-2">Add Receipt</h2>
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-6">
+      {loading ? (
+        <Spinner splash="Loading Receipt..." />
+      ) : (
+        <>
+          <h2>Edit Receipt</h2>
           <form onSubmit={handleSubmit}>
             {/* Order Number */}
             <div className="form-group">
@@ -168,23 +154,14 @@ export const AddReceipt = () => {
               />
             </div>
             {/* Add more form fields for other attributes */}
-            <div className="text-center">
-              <input
-                type="submit"
-                value="Add Receipt"
-                className="btn btn-info my-2"
-              />
-              <button
-                type="button"
-                onClick={handleClear}
-                className="btn btn-danger my-2 ml-2"
-              >
-                Clear
-              </button>
-            </div>
+            <input
+              type="submit"
+              value="Save Changes"
+              className="btn btn-info my-2"
+            />
           </form>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 };

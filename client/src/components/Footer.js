@@ -5,7 +5,7 @@ const Footer = () => {
     <footer
       className="text-center mt-5"
       style={{
-        backgroundColor: "darkgreen",
+        backgroundColor: "#00308F",
         height: "35px",
         textAlign: "center",
       }}
