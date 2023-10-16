@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../server/routes/supProduct"); // Replace this with the path to your server file
+const app = require("../server/routes/supProduct");
 
 describe("Supplier API endpoints", () => {
   it("should create a new product for the supplier", async () => {
@@ -46,7 +46,7 @@ describe("Supplier API endpoints", () => {
     // Use the obtained ID to delete the product and test the endpoint
     const res = await request(app).delete(
       `/api/deleteproductsup/${createdProductId}`
-    ); // Replace :id with the actual ID
+    );
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toBeDefined(); // Assertion to check if the deleted product exists
@@ -87,7 +87,7 @@ describe("Supplier API endpoints", () => {
       productDescription: "Sample Product Description",
     });
 
-    const createdProductId = createResponse.body._id; // Assuming the ID of the created product is returned in the response
+    const createdProductId = createResponse.body._id;
 
     // Use the obtained ID to fetch the single product and test the endpoint
     const res = await request(app).get(

@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../server/routes/draftorder"); // Replace this with the path to your server file
+const app = require("../server/routes/draftorder");
 
 describe("Draft Order API endpoints", () => {
   it("should create a new draft order", async () => {
@@ -41,7 +41,7 @@ describe("Draft Order API endpoints", () => {
       draftStatus: "Pending",
     });
 
-    const createdDraftId = createResponse.body._id; // Assuming the ID of the created draft order is returned in the response
+    const createdDraftId = createResponse.body._id;
 
     // Use the obtained ID to delete the draft order and test the endpoint
     const res = await request(app).delete(`/api/deletedraft/${createdDraftId}`); // Replace :id with the actual ID

@@ -1,6 +1,5 @@
 const request = require("supertest");
-const app = require("../server/routes/receipt"); // Replace this with the path to your server file
-
+const app = require("../server/routes/receipt");
 describe("Receipt API endpoints", () => {
   it("should create a new receipt", async () => {
     const res = await request(app).post("/api/receipt").send({
@@ -21,7 +20,7 @@ describe("Receipt API endpoints", () => {
       deliveryDate: "2023-10-20",
     });
     expect(res.statusCode).toEqual(400);
-    expect(res.body.error).toEqual("Please add the product name"); // Example assertion for the specific error message returned
+    expect(res.body.error).toEqual("Please add the product name");
   });
 
   it("should fetch all receipts", async () => {
@@ -37,13 +36,13 @@ describe("Receipt API endpoints", () => {
       deliveryDate: "2023-10-20",
     });
 
-    const createdReceiptId = createResponse.body._id; // Assuming the ID of the created receipt is returned in the response
+    const createdReceiptId = createResponse.body._id;
 
     // Use the obtained ID to update the receipt and test the endpoint
     const res = await request(app)
       .put("/api/receipt")
       .send({
-        id: createdReceiptId, // Provide the ID of the receipt to be updated
+        id: createdReceiptId,
         productname:
           "Updated Product " + Math.random().toString(36).substring(7), // Updated data with a random string
         productQuantity: Math.floor(Math.random() * 10) + 1, // Updated data with a random number between 1 and 10
@@ -64,12 +63,12 @@ describe("Receipt API endpoints", () => {
       deliveryDate: "2023-10-20",
     });
 
-    const createdReceiptId = createResponse.body._id; // Assuming the ID of the created receipt is returned in the response
+    const createdReceiptId = createResponse.body._id;
 
     // Use the obtained ID to delete the receipt and test the endpoint
     const res = await request(app).delete(
       `/api/deletereceipt/${createdReceiptId}`
-    ); // Replace :id with the actual ID
+    );
 
     expect(res.statusCode).toEqual(200);
     expect(res.body.receipts).toBeDefined(); // Assertion to check if the list of receipts is returned
