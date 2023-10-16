@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import SearchBox from "./SearchBox";
 import { Store } from "../Store";
 import { Badge } from "react-bootstrap";
 
@@ -35,10 +34,7 @@ const Header = () => {
           </h1>
         </Link>
       )}
-      {user &&
-        (user.role === "Customer Manager" || user.role === "Customer") && (
-          <SearchBox />
-        )}
+
       {user &&
         (user.role === "Customer Manager" || user.role === "Customer") && (
           <Link
@@ -59,11 +55,11 @@ const Header = () => {
           <span className="text-white" style={{ paddingRight: "25px" }}>
             {user.name}
           </span>
-          {/* YERAN */}
+          {/* BHANUKA */}
           {user.role === "Site Manager" && (
             <img
               src={
-                "https://media.licdn.com/dms/image/D5603AQFmkMSgJ69a7g/profile-displayphoto-shrink_400_400/0/1693218056068?e=1702512000&v=beta&t=LhE6xpOKeityF5EKrfFE0x1k5dzz3VPkSJivgNYiwKw"
+                "https://media.licdn.com/dms/image/D5603AQEERFT0Zy0nWA/profile-displayphoto-shrink_400_400/0/1687323514148?e=1703116800&v=beta&t=2AezZ4VN2YeNuvQGKvRCkWeXYlWotCzfj1CNySiSgE4"
               }
               alt={user.name}
               className="rounded-circle mr-2"
@@ -71,7 +67,7 @@ const Header = () => {
               height="40"
             />
           )}
-          {/* BHANUKA */}
+          {/* YASITHA */}
           {user.role === "Supplier" && (
             <img
               src={
@@ -83,11 +79,11 @@ const Header = () => {
               height="40"
             />
           )}
-          {/* YASITHA */}
+          {/* YERAN | WASANA */}
           {user.role === "Staff" && (
             <img
               src={
-                "https://media.licdn.com/dms/image/C4E03AQFRJ6istEexFg/profile-displayphoto-shrink_100_100/0/1624459091173?e=1689206400&v=beta&t=qz1g4OvzvCo1fOTGZFzfWhh7q2fvfvRpyWzaRm6L4NU"
+                "https://scontent.fcmb1-2.fna.fbcdn.net/v/t39.30808-6/300686720_498160142310772_1885594774065532790_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=vObBhxzpewwAX9FoOXB&_nc_ht=scontent.fcmb1-2.fna&oh=00_AfDs_BHIlSkM8h8u0n6iVD1Z4mKzHd8b1FbBQ-V4wdanPQ&oe=65317A13"
               }
               alt={user.name}
               className="rounded-circle mr-2"
