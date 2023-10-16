@@ -34,7 +34,7 @@ router.post("/inquirymng", auth, async(req, res) => {
                 from: "bhanukadayanana@gmail.com",
                 to: supplierEmail,
                 subject: "Sending Email for Inquiry for Order",
-                html: '<h1>Southern Agro Serve Pvt Limited</h1> <h2>Mr '+supplierName+',</h2> <h2> Description: '+Description+' .'
+                html: '<h1>Prime Construction Pvt Limited</h1> <h2>Mr '+supplierName+',</h2> <h2> Description: '+Description+' .'
                        
             };
 
