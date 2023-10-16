@@ -71,7 +71,7 @@ const Header = () => {
           {user.role === "Supplier" && (
             <img
               src={
-                "https://media.licdn.com/dms/image/D5603AQEERFT0Zy0nWA/profile-displayphoto-shrink_400_400/0/1687323514148?e=1702512000&v=beta&t=U0C30TuHRNWO3ghlN1Wu1BRa4eIOW7scANjqyd0gYqM"
+                "https://media.licdn.com/dms/image/D5603AQH94BhBdIKz0g/profile-displayphoto-shrink_400_400/0/1693917318725?e=1703116800&v=beta&t=J1Oldjrjy1V6qjebpjKkzKAYpowPNH0BGUwy95FqRv0"
               }
               alt={user.name}
               className="rounded-circle mr-2"
