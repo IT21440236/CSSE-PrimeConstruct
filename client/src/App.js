@@ -136,7 +136,6 @@ const App = () => {
                   element={<OrderListViewStaff />}
                 />
                 <Route path="/editsite/:id" element={<EditSite />} />
-                <Route path="/editinvoice/:id" element={EditInvoice} />
                 <Route
                   path="/orderlistviewstaff/approveorderstaff/:id"
                   exact
@@ -155,6 +154,11 @@ const App = () => {
                   path="/editreceipt/:id"
                   exact
                   element={<EditReceipt />}
+                />
+                <Route
+                  path="/editinvoice/:id"
+                  exact
+                  element={<EditInvoice />}
                 />
                 <Route path="/allinvoices" exact element={<AllInvoices />} />
                 <Route path="/addinvoice" exact element={<AddInvoice />} />
