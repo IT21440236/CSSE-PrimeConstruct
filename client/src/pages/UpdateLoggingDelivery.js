@@ -148,7 +148,7 @@ export const UpdateLoggingDelivery = () => {
     return (
         <div className="container">
             <div className='d-flex'>
-                <h2>Approve Order</h2>
+                <h2>Update Logging Delivery</h2>
             </div>
             <Card className='shadow card'>
                 <Form className='mt-4'>
