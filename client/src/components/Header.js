@@ -83,7 +83,7 @@ const Header = () => {
           {user.role === "Staff" && (
             <img
               src={
-                "https://scontent.fcmb1-2.fna.fbcdn.net/v/t39.30808-6/300686720_498160142310772_1885594774065532790_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=vObBhxzpewwAX9FoOXB&_nc_ht=scontent.fcmb1-2.fna&oh=00_AfDs_BHIlSkM8h8u0n6iVD1Z4mKzHd8b1FbBQ-V4wdanPQ&oe=65317A13"
+                "https://img.freepik.com/premium-vector/staff-minimal-vector-line-icon-3d-button-isolated-black-background-premium-vector_570929-2706.jpg"
               }
               alt={user.name}
               className="rounded-circle mr-2"
