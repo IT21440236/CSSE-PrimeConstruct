@@ -75,23 +75,23 @@ export const InquiryManager = () => {
                     <div className="d-flex justify-content-center">
                         <Form className='mt-2 col-lg-6'>
                             <Form.Group className="mb-3">
-                                <Form.Label>Supplier Name</Form.Label>
+                                <Form.Label>Procurement Staff Member Name</Form.Label>
                                 <Form.Control
                                     type="text"
                                     value={inpval.supplierName}
                                     onChange={setdata}
                                     name="supplierName"
-                                    placeholder="Enter supplier name"
+                                    placeholder="Enter Procurement Staff name"
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3">
-                                <Form.Label>Supplier Email</Form.Label>
+                                <Form.Label>Procurement Staff Member Email</Form.Label>
                                 <Form.Control
                                     type="email"
                                     value={inpval.supplierEmail}
                                     onChange={setdata}
                                     name="supplierEmail"
-                                    placeholder="Enter supplier email"
+                                    placeholder="Enter Procurement Staff email"
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3">

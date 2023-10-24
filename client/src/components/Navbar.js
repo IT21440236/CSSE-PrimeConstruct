@@ -158,7 +158,7 @@ const Navbar = ({ title = "Prime Construct" }) => {
                     icon={faQuestionCircle}
                     style={{ marginRight: "10px", color: "white" }}
                   />
-                  Inquiry
+                  Enquiry 
                 </Link>
               </li>
 

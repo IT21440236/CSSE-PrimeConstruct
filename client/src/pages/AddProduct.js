@@ -178,6 +178,7 @@ export const AddProduct = () => {
                                 <option>Wood</option>
                                 <option>Cement</option>
                                 <option>Steel</option>
+                                <option>Black Stone</option>
                                 {/* Add options for product names */}
                             </select>
                         </Form.Group>
