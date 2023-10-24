@@ -32,7 +32,7 @@ const Home = () => {
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-4" style={{ height: "15vh" }}>
             <Link
-              to={"/allsalesreps"}
+              to={"/supapproveorder"}
               className="btn btn-success btn-lg btn-block button-link button-link1 "
             >
               <span>Supplier</span>
@@ -41,7 +41,7 @@ const Home = () => {
 
           <div className="col-lg-4 col-md-6 mb-4">
             <Link
-              to={"/index"}
+              to={"/orderlist"}
               className="btn btn-success btn-lg btn-block  button-link button-link5"
             >
               <span>Site Manager</span>
