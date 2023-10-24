@@ -4,6 +4,7 @@ const router = express.Router();
 const orders = require("../models/managerorder");
 const auth = require("../middlewares/auth");
 
+// Create a product order
 router.post("/addManagerOrder", auth, async (req, res) => {
     //console.log(req.body);
 
@@ -29,7 +30,7 @@ router.post("/addManagerOrder", auth, async (req, res) => {
     }
 })
 
-//get vehicle data
+//get product orders
 router.get("/getManagerOrderdata", auth, async (req, res) => {
     const search = req.query.search || ""
 
@@ -56,6 +57,7 @@ router.get("/getManagerOrderdata", auth, async (req, res) => {
     }
 })
 
+//one order
 router.get("/getOneOrder/:id", auth, async (req, res) => {
     try {
         console.log(req.params);
@@ -69,6 +71,7 @@ router.get("/getOneOrder/:id", auth, async (req, res) => {
     }
 })
 
+//delete order
 router.delete("/deleteordermng/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
@@ -82,6 +85,7 @@ router.delete("/deleteordermng/:id", auth, async (req, res) => {
     }
 })
 
+//update order
 router.patch("/updateordermng/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;

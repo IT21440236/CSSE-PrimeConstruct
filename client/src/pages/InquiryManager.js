@@ -69,7 +69,7 @@ export const InquiryManager = () => {
             } */}
             <div className="container mt-2">
                 <div className='d-flex justify-content-center'>
-                    <h2>Inquiry</h2>
+                    <h2>Enquiry</h2>
                 </div>
                 <Card className='shadow card'>
                     <div className="d-flex justify-content-center">
@@ -106,7 +106,7 @@ export const InquiryManager = () => {
                                 />
                             </Form.Group>
                             <Button variant="primary" className="btn-success" type="submit" onClick={addinpdata}>
-                                Assign
+                                Sent
                             </Button>
                         </Form>
                     </div>

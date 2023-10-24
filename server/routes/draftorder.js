@@ -4,6 +4,7 @@ const router = express.Router();
 const drafts = require("../models/draftorder");
 const auth = require("../middlewares/auth");
 
+//add draft order
 router.post("/addDraftOrder",auth, async(req, res) => {
     //console.log(req.body);
 
@@ -29,7 +30,7 @@ router.post("/addDraftOrder",auth, async(req, res) => {
     }
 })
 
-//get vehicle data
+//get drafts data
 router.get("/getdraftdata",auth, async (req, res) => {
     try {
         const draftdata = await drafts.find();
@@ -40,6 +41,7 @@ router.get("/getdraftdata",auth, async (req, res) => {
     }
 })
 
+//delete draft order
 router.delete("/deletedraft/:id",auth, async (req, res) => {
     try {
         const { id } = req.params;

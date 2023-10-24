@@ -4,7 +4,7 @@ const inquiry = require("../models/inquiry");
 const nodemailer = require("nodemailer");
 const auth = require("../middlewares/auth");
 
-//assign driver to vehicle to system
+//Sent email to staff member
 router.post("/inquirymng", auth, async (req, res) => {
   //console.log(req.body);
 
@@ -36,7 +36,7 @@ router.post("/inquirymng", auth, async (req, res) => {
       to: supplierEmail,
       subject: "Sending Email for Inquiry for Order",
       html:
-        "<h1>Southern Agro Serve Pvt Limited</h1> <h2>Mr " +
+        "<h1>PRIME CONSTRUCTION Pvt Limited</h1> <h2>Mr " +
         supplierName +
         ",</h2> <h2> Description: " +
         Description +

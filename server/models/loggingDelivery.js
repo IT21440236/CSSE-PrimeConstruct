@@ -11,12 +11,13 @@ const lgdeliverySchema = new mongoose.Schema({
     productName: {type:String, required: true},
     productQty: {type:Number, required: true},
     comment: {type:String, required: true}
+    // add more fields as required
 })
 
 lgdeliverySchema.pre("save", async function (next) {
     try {
       let count = await this.constructor.countDocuments({});
-      let id = `DO${(count + 1).toString().padStart(3, "0")}`;
+      let id = `D${(count + 1).toString().padStart(3, "0")}`;
       let duplicate = true;
   
       // Check if id already exists in the database
@@ -26,7 +27,7 @@ lgdeliverySchema.pre("save", async function (next) {
           duplicate = false;
         } else {
           count++;
-          id = `DO${(count + 1).toString().padStart(3, "0")}`;
+          id = `D${(count + 1).toString().padStart(3, "0")}`;
         }
       }
   

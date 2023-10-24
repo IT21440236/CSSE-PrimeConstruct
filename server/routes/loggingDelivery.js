@@ -4,6 +4,7 @@ const router = express.Router();
 const lgdelivery = require("../models/loggingDelivery");
 const auth = require("../middlewares/auth");
 
+//add logging deliveries
 router.post("/addManagerdelivery", auth, async (req, res) => {
     //console.log(req.body);
 
@@ -29,7 +30,7 @@ router.post("/addManagerdelivery", auth, async (req, res) => {
     }
 })
 
-//get vehicle data
+//get logging deliveries
 router.get("/getManagerdeliverydata", auth, async (req, res) => {
     const search = req.query.search || ""
 
@@ -56,6 +57,7 @@ router.get("/getManagerdeliverydata", auth, async (req, res) => {
     }
 })
 
+// get single delivery data
 router.get("/getOnedelivery/:id", auth, async (req, res) => {
     try {
         console.log(req.params);
@@ -69,6 +71,7 @@ router.get("/getOnedelivery/:id", auth, async (req, res) => {
     }
 })
 
+// delete delivery data
 router.delete("/deletedeliverymng/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
@@ -82,6 +85,7 @@ router.delete("/deletedeliverymng/:id", auth, async (req, res) => {
     }
 })
 
+// update delivery data
 router.patch("/updatedeliverymng/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;

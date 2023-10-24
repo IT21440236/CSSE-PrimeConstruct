@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema({
     productName: {type:String, required: true},
     productQty: {type:Number, required: true},
     orderstatus: {type:String, required: true}
+    // add more fields as required
 })
 
 orderSchema.pre("save", async function (next) {
