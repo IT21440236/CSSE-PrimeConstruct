@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../server/routes/site"); // Replace this with the path to your server file
+const app = require("../server/routes/site");
 
 describe("Site API endpoints", () => {
   it("should create a new site", async () => {
@@ -80,5 +80,11 @@ describe("Site API endpoints", () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body.sites).toBeDefined(); // Assertion to check if the list of sites is returned
+  });
+
+  afterAll((done) => {
+    // Close the server connection after all tests
+    app.close();
+    done();
   });
 });
